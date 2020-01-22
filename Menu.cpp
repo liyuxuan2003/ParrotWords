@@ -1,0 +1,34 @@
+#include "Menu.h"
+#include "ui_Menu.h"
+
+Menu::Menu(QWidget *parent) :
+    QFrame(parent),
+    ui(new Ui::Menu)
+{
+    ui->setupUi(this);
+
+    l1=new LiEasyLayout(0,width(),height(),LiEasyLayout::left,0.6f);
+
+    l1->AddUnit(ui->labelTitle);
+    l1->AddUnit(ui->pushButtonChooseEC);
+    l1->AddUnit(ui->pushButtonChooseCE);
+    l1->AddUnit(ui->pushButtonSpellCE);
+    l1->AddUnit(ui->pushButtonDataInput);
+
+    l1->LayoutConfigDone();
+}
+
+Menu::~Menu()
+{
+    delete ui;
+}
+
+void Menu::resizeEvent(QResizeEvent *event)
+{
+    l1->ResizeWithEasyLayout(width(),height());
+}
+
+void Menu::on_pushButtonDataInput_clicked()
+{
+    emit(ShowDataInputMenu());
+}

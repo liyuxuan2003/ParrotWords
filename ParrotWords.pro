@@ -26,13 +26,30 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        MainWindow.cpp
+        MainWindow.cpp \
+    Menu.cpp \
+    LiLibrary/LiEasyLayout.cpp \
+    LiLibrary/LiFileName.cpp \
+    LiLibrary/LiFixedToLayout.cpp \
+    LiLibrary/LiReadImageInfo.cpp \
+    DataInputMenu.cpp \
+    DataInput.cpp
 
 HEADERS += \
-        MainWindow.h
+        MainWindow.h \
+    Menu.h \
+    LiLibrary/LiEasyLayout.h \
+    LiLibrary/LiFileName.h \
+    LiLibrary/LiFixedToLayout.h \
+    LiLibrary/LiReadImageInfo.h \
+    DataInputMenu.h \
+    DataInput.h
 
 FORMS += \
-        MainWindow.ui
+        MainWindow.ui \
+    Menu.ui \
+    DataInputMenu.ui \
+    DataInput.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

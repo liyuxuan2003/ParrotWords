@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Menu</class>
+ <widget class="QFrame" name="Menu">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>675</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Frame</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(81, 81, 81);</string>
+  </property>
+  <widget class="QLabel" name="labelTitle">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>35</y>
+     <width>471</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>23</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>鹦鹉单词 / Parrot Words</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonDataInput">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>565</y>
+     <width>191</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(100, 100, 100);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>数据写入</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonChooseEC">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>145</y>
+     <width>191</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(100, 100, 100);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>英译中选择练习</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonChooseCE">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>285</y>
+     <width>191</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(100, 100, 100);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>中译英选择练习</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonSpellCE">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>425</y>
+     <width>191</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(100, 100, 100);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>中译英拼写练习</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
