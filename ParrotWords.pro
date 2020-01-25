@@ -33,7 +33,9 @@ SOURCES += \
     LiLibrary/LiFixedToLayout.cpp \
     LiLibrary/LiReadImageInfo.cpp \
     DataInputMenu.cpp \
-    DataInput.cpp
+    DataInput.cpp \
+    ChooseMenu.cpp \
+    Choose.cpp
 
 HEADERS += \
         MainWindow.h \
@@ -43,13 +45,17 @@ HEADERS += \
     LiLibrary/LiFixedToLayout.h \
     LiLibrary/LiReadImageInfo.h \
     DataInputMenu.h \
-    DataInput.h
+    DataInput.h \
+    ChooseMenu.h \
+    Choose.h
 
 FORMS += \
         MainWindow.ui \
     Menu.ui \
     DataInputMenu.ui \
-    DataInput.ui
+    DataInput.ui \
+    ChooseMenu.ui \
+    Choose.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

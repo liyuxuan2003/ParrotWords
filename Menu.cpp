@@ -32,3 +32,13 @@ void Menu::on_pushButtonDataInput_clicked()
 {
     emit(ShowDataInputMenu());
 }
+
+void Menu::on_pushButtonChooseEC_clicked()
+{
+    emit(ShowChooseMenu(ChooseMode::EC));
+}
+
+void Menu::on_pushButtonChooseCE_clicked()
+{
+    emit(ShowChooseMenu(ChooseMode::CE));
+}

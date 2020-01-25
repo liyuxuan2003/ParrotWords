@@ -4,6 +4,8 @@
 #include <QFrame>
 #include <LiLibrary/LiEasyLayout.h>
 
+#include"ChooseMenu.h"
+
 namespace Ui
 {
     class Menu;
@@ -23,6 +25,10 @@ protected:
 private slots:
     void on_pushButtonDataInput_clicked();
 
+    void on_pushButtonChooseEC_clicked();
+
+    void on_pushButtonChooseCE_clicked();
+
 private:
     Ui::Menu* ui;
 
@@ -30,7 +36,7 @@ private:
 
 signals:
     void ShowDataInputMenu();
-
+    void ShowChooseMenu(ChooseMode::Mode mode);
 };
 
 #endif // MENU_H

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DataInputMenu</class>
- <widget class="QFrame" name="DataInputMenu">
+ <class>Choose</class>
+ <widget class="QFrame" name="Choose">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -16,188 +16,11 @@
   <property name="styleSheet">
    <string notr="true">background-color: rgb(81, 81, 81);</string>
   </property>
-  <widget class="QLabel" name="labelTitle">
+  <widget class="QPushButton" name="pushButtonNext">
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>40</y>
-     <width>471</width>
-     <height>61</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>19</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>数据写入-配置页面</string>
-   </property>
-  </widget>
-  <widget class="QSpinBox" name="spinBoxNum">
-   <property name="geometry">
-    <rect>
-     <x>180</x>
-     <y>400</y>
-     <width>141</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线 Light</family>
-     <pointsize>14</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="minimum">
-    <number>1</number>
-   </property>
-   <property name="maximum">
-    <number>200</number>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelName">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>150</y>
-     <width>121</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>14</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>单词库名称：</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEditName">
-   <property name="geometry">
-    <rect>
-     <x>180</x>
-     <y>150</y>
-     <width>321</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelPath">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>270</y>
-     <width>121</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>14</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>单词库路径：</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButtonPath">
-   <property name="geometry">
-    <rect>
-     <x>180</x>
-     <y>270</y>
-     <width>121</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(100, 100, 100);
-color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>修改路径</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelPathSet">
-   <property name="geometry">
-    <rect>
-     <x>320</x>
-     <y>270</y>
-     <width>551</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>14</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>D://</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelNum">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>400</y>
-     <width>121</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>14</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>单词库数目：</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButtonCreate">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>510</y>
+     <y>590</y>
      <width>161</width>
      <height>51</height>
     </rect>
@@ -213,29 +36,29 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>创建单词库！</string>
+    <string>下一题  &gt;&gt;</string>
    </property>
   </widget>
-  <widget class="QLabel" name="labelFailed">
+  <widget class="QLabel" name="labelQuestion">
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>590</y>
-     <width>441</width>
-     <height>31</height>
+     <y>200</y>
+     <width>521</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>等线</family>
-     <pointsize>12</pointsize>
+     <pointsize>14</pointsize>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(255, 30, 30);</string>
+    <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>创建失败！请检查路径下是否有重名文件！</string>
+    <string>完全的 全部的 绝对的</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButtonExit">
@@ -259,6 +82,138 @@ color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>返回首页</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelTitle">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>40</y>
+     <width>471</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>19</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>中译英选择练习-配置页面</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelLocation">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>120</y>
+     <width>191</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>当前题目：1/50</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="radioButtonA">
+   <property name="geometry">
+    <rect>
+     <x>52</x>
+     <y>280</y>
+     <width>301</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>A.  absolute</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="radioButtonB">
+   <property name="geometry">
+    <rect>
+     <x>52</x>
+     <y>360</y>
+     <width>301</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>B.  absolute</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="radioButtonC">
+   <property name="geometry">
+    <rect>
+     <x>52</x>
+     <y>440</y>
+     <width>301</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>C.  absolute</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="radioButtonD">
+   <property name="geometry">
+    <rect>
+     <x>52</x>
+     <y>520</y>
+     <width>301</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>D.  absolute</string>
    </property>
   </widget>
  </widget>
