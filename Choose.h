@@ -4,6 +4,7 @@
 #include <QFrame>
 #include <QTime>
 #include <QRadioButton>
+#include <QButtonGroup>
 
 #include <LiLibrary/LiEasyLayout.h>
 #include <LiLibrary/LiFixedToLayout.h>

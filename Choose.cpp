@@ -54,10 +54,19 @@ void Choose::Init(ChooseMode::Mode mode,ChooseOrder::Order order,QStringList tes
     if(mode==ChooseMode::EC)
         ui->labelTitle->setText("英译中选择练习");
 
-    ui->radioButtonA->setChecked(false);
-    ui->radioButtonB->setChecked(false);
-    ui->radioButtonC->setChecked(false);
-    ui->radioButtonD->setChecked(false);
+    for(int i=0;i<4;i++)
+        radioButtons[i]->setAutoExclusive(false);
+
+    for(int i=0;i<4;i++)
+        radioButtons[i]->setChecked(false);
+
+    for(int i=0;i<4;i++)
+        radioButtons[i]->setAutoExclusive(true);
+
+    wordChineseTest.clear();
+    wordEnglishTest.clear();
+    wordChineseConfuse.clear();
+    wordEnglishConfuse.clear();
 
     for(int i=0;i<testFilePath.length();i++)
     {
@@ -116,7 +125,7 @@ void Choose::Init(ChooseMode::Mode mode,ChooseOrder::Order order,QStringList tes
     if(review.length()==0)
         totalNum=wordChineseTest.length();
     if(review.length()!=0)
-        totalNum=sizeof(review)/sizeof (review[0]);
+        totalNum=review.length();
 
     testOrder=new int[totalNum];
     if(review.length()==0)
@@ -126,16 +135,15 @@ void Choose::Init(ChooseMode::Mode mode,ChooseOrder::Order order,QStringList tes
         for(int i=0;i<totalNum;i++)
             testOrder[i]=review[i];
 
+    QTime time=QTime::currentTime();
+    qsrand(time.msec()+time.second()*1000);
     if(order==ChooseOrder::Random)
     {
         for(int i=0;i<4*totalNum;i++)
         {
-            QTime time=QTime::currentTime();
-            qsrand(time.msec()+time.second()*1000);
             int n1=qrand()%totalNum;
             int n2=qrand()%totalNum;
-            testOrder[n1]=n2;
-            testOrder[n2]=n1;
+            qSwap(testOrder[n1],testOrder[n2]);
         }
     }
 
@@ -146,6 +154,15 @@ void Choose::GeneratePage()
 {
     QTime time=QTime::currentTime();
     qsrand(time.msec()+time.second()*1000);
+
+    for(int i=0;i<4;i++)
+        radioButtons[i]->setAutoExclusive(false);
+
+    for(int i=0;i<4;i++)
+        radioButtons[i]->setChecked(false);
+
+    for(int i=0;i<4;i++)
+        radioButtons[i]->setAutoExclusive(true);
 
     QList<int> wrongAns;
     wrongAns.clear();
@@ -192,6 +209,8 @@ void Choose::GeneratePage()
         for(int i=0;i<4;i++)
             radioButtons[i]->setText(optstr[i]);
     }
+
+    ui->labelLocation->setText("当前题目："+QString::number(nowNum+1)+"/"+QString::number(totalNum));
 }
 
 void Choose::on_pushButtonNext_clicked()
