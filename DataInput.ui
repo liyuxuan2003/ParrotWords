@@ -155,18 +155,21 @@ color: rgb(255, 255, 255);</string>
     <rect>
      <x>200</x>
      <y>270</y>
-     <width>321</width>
+     <width>411</width>
      <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>等线</family>
-     <pointsize>12</pointsize>
+     <family>Consolas</family>
+     <pointsize>15</pointsize>
     </font>
    </property>
    <property name="styleSheet">
     <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEditChinese">
@@ -187,6 +190,9 @@ color: rgb(255, 255, 255);</string>
    <property name="styleSheet">
     <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
+   <property name="text">
+    <string/>
+   </property>
   </widget>
   <widget class="QPushButton" name="pushButtonSave">
    <property name="geometry">
@@ -202,6 +208,9 @@ color: rgb(255, 255, 255);</string>
      <family>等线</family>
      <pointsize>12</pointsize>
     </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(100, 100, 100);
@@ -247,6 +256,9 @@ color: rgb(255, 255, 255);</string>
      <family>等线</family>
      <pointsize>12</pointsize>
     </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(100, 100, 100);

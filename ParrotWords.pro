@@ -35,7 +35,11 @@ SOURCES += \
     DataInputMenu.cpp \
     DataInput.cpp \
     ChooseMenu.cpp \
-    Choose.cpp
+    Choose.cpp \
+    ChooseReview.cpp \
+    SpellMenu.cpp \
+    Spell.cpp \
+    SpellReview.cpp
 
 HEADERS += \
         MainWindow.h \
@@ -47,7 +51,11 @@ HEADERS += \
     DataInputMenu.h \
     DataInput.h \
     ChooseMenu.h \
-    Choose.h
+    Choose.h \
+    ChooseReview.h \
+    SpellMenu.h \
+    Spell.h \
+    SpellReview.h
 
 FORMS += \
         MainWindow.ui \
@@ -55,7 +63,11 @@ FORMS += \
     DataInputMenu.ui \
     DataInput.ui \
     ChooseMenu.ui \
-    Choose.ui
+    Choose.ui \
+    ChooseReview.ui \
+    SpellMenu.ui \
+    Spell.ui \
+    SpellReview.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

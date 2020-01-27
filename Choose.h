@@ -4,12 +4,13 @@
 #include <QFrame>
 #include <QTime>
 #include <QRadioButton>
-#include <QButtonGroup>
+#include <QKeyEvent>
 
 #include <LiLibrary/LiEasyLayout.h>
 #include <LiLibrary/LiFixedToLayout.h>
 
 #include "ChooseMenu.h"
+#include "ChooseReview.h"
 
 namespace Ui
 {
@@ -29,6 +30,8 @@ public:
 protected:
     virtual void resizeEvent(QResizeEvent * event);
 
+    virtual void keyPressEvent(QKeyEvent *ev);
+
 private slots:
     void on_pushButtonNext_clicked();
 
@@ -36,6 +39,8 @@ private slots:
 
 private:
     Ui::Choose *ui;
+
+    ChooseReview* chooseReview;
 
     LiEasyLayout* l1;
     LiFixedToLayout* l2;
@@ -62,6 +67,9 @@ private:
 
     int nowNum;
     int totalNum;
+
+    int rightNum;
+    int wrongNum;
 
     void GeneratePage();
 

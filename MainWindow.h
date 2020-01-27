@@ -11,8 +11,12 @@
 #include "ChooseMenu.h"
 #include "Choose.h"
 
-namespace Ui {
-class MainWindow;
+#include "SpellMenu.h"
+#include "Spell.h"
+
+namespace Ui
+{
+    class MainWindow;
 }
 
 class MainWindow : public QMainWindow
@@ -25,10 +29,15 @@ public:
 
 public slots:
     void ShowMenu();
+
     void ShowDataInputMenu();
     void ShowDataInput(QString path,QString name,int num);
+
     void ShowChooseMenu(ChooseMode::Mode mode);
     void ShowChoose(ChooseMode::Mode mode,ChooseOrder::Order order,QStringList testFilePath,QStringList confuseFilePath);
+
+    void ShowSpellMenu();
+    void ShowSpell(SpellOrder::Order order,QStringList testFilePath);
 
 protected:
     virtual void resizeEvent(QResizeEvent * event);
@@ -43,6 +52,9 @@ private:
 
     ChooseMenu* chooseMenu;
     Choose* choose;
+
+    SpellMenu* spellMenu;
+    Spell* spell;
 
     void HideAllFrame();
 };

@@ -45,6 +45,7 @@ void ChooseMenu::Init(ChooseMode::Mode mode)
     testFilePath.clear();
     confuseFilePath.clear();
     ui->labelFailed->hide();
+    ui->radioButtonOrdered->setChecked(true);
 }
 
 void ChooseMenu::on_pushButtonExit_clicked()
@@ -143,10 +144,12 @@ void ChooseMenu::on_pushButtonStart_clicked()
 
 void ChooseMenu::on_radioButtonOrdered_toggled(bool checked)
 {
-    order=ChooseOrder::Ordered;
+    if(checked==true)
+        order=ChooseOrder::Ordered;
 }
 
 void ChooseMenu::on_radioButtonRandom_toggled(bool checked)
 {
-    order=ChooseOrder::Random;
+    if(checked==true)
+        order=ChooseOrder::Random;
 }

@@ -1,5 +1,5 @@
-#ifndef CHOOSEMENU_H
-#define CHOOSEMENU_H
+#ifndef SPELLMENU_H
+#define SPELLMENU_H
 
 #include <QFrame>
 #include <QFileDialog>
@@ -12,54 +12,44 @@
 #include <LiLibrary/LiFixedToLayout.h>
 #include <LiLibrary/LiFileName.h>
 
-namespace Ui
-{
-    class ChooseMenu;
-}
-
-class ChooseMode
-{
-public:
-    enum Mode{CE,EC};
-};
-
-class ChooseOrder
+class SpellOrder
 {
 public:
     enum Order{Ordered,Random};
 };
 
-class ChooseMenu : public QFrame
+namespace Ui
+{
+    class SpellMenu;
+}
+
+class SpellMenu : public QFrame
 {
     Q_OBJECT
 
 public:
-    explicit ChooseMenu(QWidget *parent = nullptr);
-    ~ChooseMenu();
+    explicit SpellMenu(QWidget *parent = nullptr);
+    ~SpellMenu();
 
-    void Init(ChooseMode::Mode mode);
+    void Init();
 
 protected:
     virtual void resizeEvent(QResizeEvent * event);
 
 private:
-    Ui::ChooseMenu *ui;
+    Ui::SpellMenu *ui;
 
     LiEasyLayout* l1;
     LiFixedToLayout* l2;
 
-    ChooseMode::Mode mode;
-    ChooseOrder::Order order;
+    SpellOrder::Order order;
 
     QStringList testFilePath;
-    QStringList confuseFilePath;
 
 private slots:
     void on_pushButtonExit_clicked();
 
     void on_pushButtonTest_clicked();
-
-    void on_pushButtonConfuse_clicked();
 
     void on_pushButtonStart_clicked();
 
@@ -69,7 +59,7 @@ private slots:
 
 signals:
     void ShowMenu();
-    void ShowChoose(ChooseMode::Mode mode,ChooseOrder::Order order,QStringList testFilePath,QStringList confuseFilePath);
+    void ShowSpell(SpellOrder::Order order,QStringList testFilePath);
 };
 
-#endif // CHOOSEMENU_H
+#endif // SPELLMENU_H

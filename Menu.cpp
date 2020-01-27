@@ -42,3 +42,8 @@ void Menu::on_pushButtonChooseCE_clicked()
 {
     emit(ShowChooseMenu(ChooseMode::CE));
 }
+
+void Menu::on_pushButtonSpellCE_clicked()
+{
+    emit(ShowSpellMenu());
+}

@@ -29,6 +29,8 @@ private slots:
 
     void on_pushButtonChooseCE_clicked();
 
+    void on_pushButtonSpellCE_clicked();
+
 private:
     Ui::Menu* ui;
 
@@ -37,6 +39,7 @@ private:
 signals:
     void ShowDataInputMenu();
     void ShowChooseMenu(ChooseMode::Mode mode);
+    void ShowSpellMenu();
 };
 
 #endif // MENU_H

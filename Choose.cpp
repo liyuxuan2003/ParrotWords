@@ -27,6 +27,9 @@ Choose::Choose(QWidget *parent) :
     radioButtons[1]=ui->radioButtonB;
     radioButtons[2]=ui->radioButtonC;
     radioButtons[3]=ui->radioButtonD;
+
+    chooseReview=new ChooseReview();
+    chooseReview->hide();
 }
 
 Choose::~Choose()
@@ -49,19 +52,16 @@ void Choose::Init(ChooseMode::Mode mode,ChooseOrder::Order order,QStringList tes
 
     toReview.clear();
 
+    rightNum=0;
+    wrongNum=0;
+
     if(mode==ChooseMode::CE)
         ui->labelTitle->setText("中译英选择练习");
     if(mode==ChooseMode::EC)
         ui->labelTitle->setText("英译中选择练习");
 
-    for(int i=0;i<4;i++)
-        radioButtons[i]->setAutoExclusive(false);
-
-    for(int i=0;i<4;i++)
-        radioButtons[i]->setChecked(false);
-
-    for(int i=0;i<4;i++)
-        radioButtons[i]->setAutoExclusive(true);
+    if(review.length()!=0)
+        ui->labelTitle->setText(ui->labelTitle->text()+"-复习模式");
 
     wordChineseTest.clear();
     wordEnglishTest.clear();
@@ -123,17 +123,19 @@ void Choose::Init(ChooseMode::Mode mode,ChooseOrder::Order order,QStringList tes
 
     nowNum=0;
     if(review.length()==0)
+    {
         totalNum=wordChineseTest.length();
-    if(review.length()!=0)
-        totalNum=review.length();
-
-    testOrder=new int[totalNum];
-    if(review.length()==0)
+        testOrder=new int[totalNum];
         for(int i=0;i<totalNum;i++)
             testOrder[i]=i;
+    }
     if(review.length()!=0)
+    {
+        totalNum=review.length();
+        testOrder=new int[totalNum];
         for(int i=0;i<totalNum;i++)
             testOrder[i]=review[i];
+    }
 
     QTime time=QTime::currentTime();
     qsrand(time.msec()+time.second()*1000);
@@ -154,6 +156,9 @@ void Choose::GeneratePage()
 {
     QTime time=QTime::currentTime();
     qsrand(time.msec()+time.second()*1000);
+
+    for(int i=0;i<4;i++)
+        radioButtons[i]->setStyleSheet("color: rgb(255, 255, 255);");
 
     for(int i=0;i<4;i++)
         radioButtons[i]->setAutoExclusive(false);
@@ -211,6 +216,23 @@ void Choose::GeneratePage()
     }
 
     ui->labelLocation->setText("当前题目："+QString::number(nowNum+1)+"/"+QString::number(totalNum));
+
+    this->setFocus();
+}
+
+void Choose::keyPressEvent(QKeyEvent *ev)
+{
+    this->setFocus();
+    if(ev->key()==Qt::Key_1)
+        ui->radioButtonA->click();
+    if(ev->key()==Qt::Key_2)
+        ui->radioButtonB->click();
+    if(ev->key()==Qt::Key_3)
+        ui->radioButtonC->click();
+    if(ev->key()==Qt::Key_4)
+        ui->radioButtonD->click();
+    if(ev->key()==Qt::Key_Space)
+        ui->pushButtonNext->click();
 }
 
 void Choose::on_pushButtonNext_clicked()
@@ -224,20 +246,49 @@ void Choose::on_pushButtonNext_clicked()
             break;
         }
     }
+    if(userAns==-1)
+        return;
     if(nowRightOption==userAns)
     {
+        if(toReview.isEmpty()==false)
+            if(testOrder[nowNum]!=toReview.last())
+                rightNum++;
+        if(toReview.isEmpty()==true)
+            rightNum++;
         nowNum++;
         for(int i=0;i<4;i++)
             radioButtons[i]->setChecked(false);
         if(nowNum<totalNum)
             GeneratePage();
         else
-            emit(ShowMenu());
+        {
+            chooseReview->Init(rightNum,wrongNum,totalNum);
+            chooseReview->exec();
+            if(chooseReview->GetUserAns()==true)
+            {
+                Init(mode,order,testFilePath,confuseFilePath,toReview);
+                return;
+            }
+            else
+                emit(ShowMenu());
+        }
     }
     else
     {
-        qDebug() << nowRightOption;
-        toReview.append(testOrder[nowNum]);
+        if(toReview.isEmpty()==false)
+        {
+            if(testOrder[nowNum]!=toReview.last())
+            {
+                wrongNum++;
+                toReview.append(testOrder[nowNum]);
+            }
+        }
+        if(toReview.isEmpty()==true)
+        {
+            wrongNum++;
+            toReview.append(testOrder[nowNum]);
+        }
+        radioButtons[nowRightOption]->setStyleSheet("color: rgb(255, 0, 0);");
     }
 }
 

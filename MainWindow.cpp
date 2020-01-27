@@ -22,6 +22,12 @@ MainWindow::MainWindow(QWidget *parent) :
     choose=new Choose(this);
     choose->move(0,0);
 
+    spellMenu=new SpellMenu(this);
+    spellMenu->move(0,0);
+
+    spell=new Spell(this);
+    spell->move(0,0);
+
     HideAllFrame();
     menu->show();
 
@@ -59,6 +65,23 @@ MainWindow::MainWindow(QWidget *parent) :
         choose,SIGNAL(ShowMenu()),
         this,SLOT(ShowMenu()));
 
+    //Spell
+    connect(
+        menu,SIGNAL(ShowSpellMenu()),
+        this,SLOT(ShowSpellMenu()));
+
+    connect(
+        spellMenu,SIGNAL(ShowMenu()),
+        this,SLOT(ShowMenu()));
+
+    connect(
+        spellMenu,SIGNAL(ShowSpell(SpellOrder::Order,QStringList)),
+        this,SLOT(ShowSpell(SpellOrder::Order,QStringList)));
+
+    connect(
+        spell,SIGNAL(ShowMenu()),
+        this,SLOT(ShowMenu()));
+
 }
 
 MainWindow::~MainWindow()
@@ -69,19 +92,29 @@ MainWindow::~MainWindow()
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
     menu->resize(width(),height());
+
     dataInputMenu->resize(width(),height());
     dataInput->resize(width(),height());
+
     chooseMenu->resize(width(),height());
     choose->resize(width(),height());
+
+    spellMenu->resize(width(),height());
+    spell->resize(width(),height());
 }
 
 void MainWindow::HideAllFrame()
 {
     menu->hide();
+
     dataInputMenu->hide();
     dataInput->hide();
+
     chooseMenu->hide();
     choose->hide();
+
+    spellMenu->hide();
+    spell->hide();
 }
 
 void MainWindow::ShowMenu()
@@ -118,4 +151,20 @@ void MainWindow::ShowChoose(ChooseMode::Mode mode,ChooseOrder::Order order,QStri
     emptyList.clear();
     choose->show();
     choose->Init(mode,order,testFilePath,confuseFilePath,emptyList);
+}
+
+void MainWindow::ShowSpellMenu()
+{
+    HideAllFrame();
+    spellMenu->show();
+    spellMenu->Init();
+}
+
+void MainWindow::ShowSpell(SpellOrder::Order order,QStringList testFilePath)
+{
+    HideAllFrame();
+    QList<int> emptyList;
+    emptyList.clear();
+    spell->show();
+    spell->Init(order,testFilePath,emptyList);
 }
