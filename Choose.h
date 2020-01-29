@@ -1,10 +1,16 @@
 #ifndef CHOOSE_H
 #define CHOOSE_H
 
+#include <algorithm>
+
 #include <QFrame>
 #include <QTime>
 #include <QRadioButton>
 #include <QKeyEvent>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonParseError>
 
 #include <LiLibrary/LiEasyLayout.h>
 #include <LiLibrary/LiFixedToLayout.h>
@@ -37,6 +43,8 @@ private slots:
 
     void on_pushButtonExit_clicked();
 
+    void on_pushButtonMark_clicked();
+
 private:
     Ui::Choose *ui;
 
@@ -61,15 +69,13 @@ private:
 
     QList<int> toReview;
 
+    int* record;
     int* testOrder;
 
     int nowRightOption;
 
     int nowNum;
     int totalNum;
-
-    int rightNum;
-    int wrongNum;
 
     void GeneratePage();
 

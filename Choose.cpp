@@ -17,7 +17,7 @@ Choose::Choose(QWidget *parent) :
     l1->AddUnit(ui->radioButtonB);
     l1->AddUnit(ui->radioButtonC);
     l1->AddUnit(ui->radioButtonD);
-    l1->AddUnit(ui->pushButtonNext);
+    l1->AddUnit(new QWidget*[3]{ui->pushButtonNext,ui->pushButtonMark,ui->labelMark},3);
 
     l1->LayoutConfigDone();
 
@@ -52,16 +52,10 @@ void Choose::Init(ChooseMode::Mode mode,ChooseOrder::Order order,QStringList tes
 
     toReview.clear();
 
-    rightNum=0;
-    wrongNum=0;
-
     if(mode==ChooseMode::CE)
         ui->labelTitle->setText("中译英选择练习");
     if(mode==ChooseMode::EC)
         ui->labelTitle->setText("英译中选择练习");
-
-    if(review.length()!=0)
-        ui->labelTitle->setText(ui->labelTitle->text()+"-复习模式");
 
     wordChineseTest.clear();
     wordEnglishTest.clear();
@@ -71,7 +65,7 @@ void Choose::Init(ChooseMode::Mode mode,ChooseOrder::Order order,QStringList tes
     for(int i=0;i<testFilePath.length();i++)
     {
         bool isExist=false;
-        for(int j=0;j<confuseFilePath.length();i++)
+        for(int j=0;j<confuseFilePath.length();j++)
         {
             if(testFilePath[i]==confuseFilePath[j])
             {
@@ -136,6 +130,7 @@ void Choose::Init(ChooseMode::Mode mode,ChooseOrder::Order order,QStringList tes
         for(int i=0;i<totalNum;i++)
             testOrder[i]=review[i];
     }
+    record=new int[totalNum]{0};
 
     QTime time=QTime::currentTime();
     qsrand(time.msec()+time.second()*1000);
@@ -156,6 +151,8 @@ void Choose::GeneratePage()
 {
     QTime time=QTime::currentTime();
     qsrand(time.msec()+time.second()*1000);
+
+    ui->labelMark->hide();
 
     for(int i=0;i<4;i++)
         radioButtons[i]->setStyleSheet("color: rgb(255, 255, 255);");
@@ -208,7 +205,7 @@ void Choose::GeneratePage()
         ui->labelQuestion->setText(wordEnglishTest[testOrder[nowNum]]);
         QString optstr[4];
         for(int i=0;i<4;i++)
-            optstr[i]=wordChineseTest[wrongAns[i]];
+            optstr[i]=wordChineseConfuse[wrongAns[i]];
         nowRightOption=qrand()%4;
         optstr[nowRightOption]=wordChineseTest[testOrder[nowNum]];
         for(int i=0;i<4;i++)
@@ -231,6 +228,8 @@ void Choose::keyPressEvent(QKeyEvent *ev)
         ui->radioButtonC->click();
     if(ev->key()==Qt::Key_4)
         ui->radioButtonD->click();
+    if(ev->key()==Qt::Key_0)
+        ui->pushButtonMark->click();
     if(ev->key()==Qt::Key_Space)
         ui->pushButtonNext->click();
 }
@@ -250,11 +249,6 @@ void Choose::on_pushButtonNext_clicked()
         return;
     if(nowRightOption==userAns)
     {
-        if(toReview.isEmpty()==false)
-            if(testOrder[nowNum]!=toReview.last())
-                rightNum++;
-        if(toReview.isEmpty()==true)
-            rightNum++;
         nowNum++;
         for(int i=0;i<4;i++)
             radioButtons[i]->setChecked(false);
@@ -262,7 +256,19 @@ void Choose::on_pushButtonNext_clicked()
             GeneratePage();
         else
         {
-            chooseReview->Init(rightNum,wrongNum,totalNum);
+            int rightNum=0;
+            int wrongNum=0;
+            int markNum=0;
+            for(int i=0;i<totalNum;i++)
+            {
+                if(record[i]==0)
+                    rightNum++;
+                if(record[i]==1)
+                    markNum++;
+                if(record[i]==2)
+                    wrongNum++;
+            }
+            chooseReview->Init(rightNum,wrongNum,markNum,totalNum);
             chooseReview->exec();
             if(chooseReview->GetUserAns()==true)
             {
@@ -279,13 +285,13 @@ void Choose::on_pushButtonNext_clicked()
         {
             if(testOrder[nowNum]!=toReview.last())
             {
-                wrongNum++;
+                record[nowNum]=std::max(record[nowNum],2);
                 toReview.append(testOrder[nowNum]);
             }
         }
         if(toReview.isEmpty()==true)
         {
-            wrongNum++;
+            record[nowNum]=std::max(record[nowNum],2);
             toReview.append(testOrder[nowNum]);
         }
         radioButtons[nowRightOption]->setStyleSheet("color: rgb(255, 0, 0);");
@@ -295,4 +301,11 @@ void Choose::on_pushButtonNext_clicked()
 void Choose::on_pushButtonExit_clicked()
 {
     emit(ShowMenu());
+}
+
+void Choose::on_pushButtonMark_clicked()
+{
+    ui->labelMark->show();
+    record[nowNum]=std::max(record[nowNum],1);
+    toReview.append(testOrder[nowNum]);
 }

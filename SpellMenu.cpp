@@ -12,7 +12,7 @@ SpellMenu::SpellMenu(QWidget *parent) :
 
     l1->AddUnit(ui->labelTitle);
     l1->AddUnit(new QWidget*[3]{ui->labelTest,ui->pushButtonTest,ui->labelTestInfo},3);
-    l1->AddUnit(new QWidget*[3]{ui->labelOrder,ui->radioButtonOrdered,ui->radioButtonRandom},3);
+    l1->AddUnit(new QWidget*[5]{ui->labelOrder,ui->radioButtonOrdered,ui->radioButtonRandom,ui->radioButtonSelect,ui->spinBoxSelect},5);
     l1->AddUnit(ui->pushButtonStart);
     l1->AddUnit(ui->labelFailed);
 
@@ -37,6 +37,8 @@ void SpellMenu::Init()
     ui->labelTestInfo->setText("未选择测试单词库");
     testFilePath.clear();
     ui->labelFailed->hide();
+    ui->spinBoxSelect->hide();
+    ui->spinBoxSelect->setValue(10);
     ui->radioButtonOrdered->setChecked(true);
 }
 
@@ -65,6 +67,8 @@ void SpellMenu::on_pushButtonStart_clicked()
 
     bool testFileCheck=true;
 
+    int wordCounter=0;
+
     for(int i=0;i<testFilePath.length();i++)
     {
         QFile file(testFilePath[i]);
@@ -81,6 +85,9 @@ void SpellMenu::on_pushButtonStart_clicked()
             testFileCheck=false;
             break;
         }
+
+        QJsonArray jsonArray=jsonDoc.array();
+        wordCounter+=jsonArray.size();
     }
 
     if(testFileCheck==false)
@@ -90,8 +97,33 @@ void SpellMenu::on_pushButtonStart_clicked()
         return;
     }
 
+    QList<int> select;
+    select.clear();
+    if(ui->radioButtonSelect->isChecked()==true)
+    {
+        int needWord=ui->spinBoxSelect->value();
+        if(needWord>wordCounter)
+            needWord=wordCounter;
+        QList<int> selectList;
+        selectList.clear();
+        for(int i=0;i<wordCounter;i++)
+            selectList.append(i);
+
+        QTime time=QTime::currentTime();
+        qsrand(time.msec()+time.second()*1000);
+        for(int i=0;i<4*wordCounter;i++)
+        {
+            int n1=qrand()%wordCounter;
+            int n2=qrand()%wordCounter;
+            qSwap(selectList[n1],selectList[n2]);
+        }
+
+        for(int i=0;i<needWord;i++)
+            select.append(selectList[i]);
+    }
+
     ui->labelFailed->hide();
-    emit(ShowSpell(order,testFilePath));
+    emit(ShowSpell(order,testFilePath,select));
 }
 
 void SpellMenu::on_radioButtonOrdered_toggled(bool checked)
@@ -104,4 +136,15 @@ void SpellMenu::on_radioButtonRandom_toggled(bool checked)
 {
     if(checked==true)
         order=SpellOrder::Random;
+}
+
+void SpellMenu::on_radioButtonSelect_toggled(bool checked)
+{
+    if(checked==true)
+    {
+        order=SpellOrder::Random;
+        ui->spinBoxSelect->show();
+    }
+    if(checked==false)
+        ui->spinBoxSelect->hide();
 }

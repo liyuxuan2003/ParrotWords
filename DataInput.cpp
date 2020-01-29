@@ -19,6 +19,8 @@ DataInput::DataInput(QWidget *parent) :
     l1->LayoutConfigDone();
 
     l2->AddUnit(ui->pushButtonExit,width(),height(),LiFixedCorner::RightBottom);
+
+    ui->lineEditEnglish->setAttribute(Qt::WA_InputMethodEnabled,false);
 }
 
 DataInput::~DataInput()
@@ -44,13 +46,16 @@ void DataInput::Init(QString path,QString name,int num)
     ui->labelLocation->setText("单词位置："+QString::number(nowNum+1)+"/"+QString::number(num));
     ui->labelSaveInfo->hide();
 
-    wordChinese=new QString[num];
-    wordEnglish=new QString[num];
+    ui->lineEditChinese->setText("");
+    ui->lineEditEnglish->setText("");
+
+    wordChinese.clear();
+    wordEnglish.clear();
 
     for(int i=0;i<num;i++)
     {
-        wordChinese[i]="";
-        wordEnglish[i]="";
+        wordChinese.append("");
+        wordEnglish.append("");
     }
 }
 
@@ -69,6 +74,8 @@ void DataInput::OnLocationChange(int offset)
 {
     wordChinese[nowNum]=ui->lineEditChinese->text();
     wordEnglish[nowNum]=ui->lineEditEnglish->text();
+
+    ui->lineEditEnglish->setFocus();
 
     nowNum=nowNum+offset;
     if(nowNum>0 && nowNum<num-1)
@@ -104,7 +111,6 @@ void DataInput::on_pushButtonSave_clicked()
     for(int i=0;i<num;i++)
     {
         QJsonObject jsonObject;
-        jsonObject.insert("id",i+1);
         jsonObject.insert("wordChinese",wordChinese[i]);
         jsonObject.insert("wordEnglish",wordEnglish[i]);
         jsonArray.append(jsonObject);

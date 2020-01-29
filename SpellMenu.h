@@ -2,6 +2,7 @@
 #define SPELLMENU_H
 
 #include <QFrame>
+#include <QTime>
 #include <QFileDialog>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -57,9 +58,12 @@ private slots:
 
     void on_radioButtonRandom_toggled(bool checked);
 
+
+    void on_radioButtonSelect_toggled(bool checked);
+
 signals:
     void ShowMenu();
-    void ShowSpell(SpellOrder::Order order,QStringList testFilePath);
+    void ShowSpell(SpellOrder::Order order,QStringList testFilePath,QList<int> select);
 };
 
 #endif // SPELLMENU_H

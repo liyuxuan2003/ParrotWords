@@ -13,7 +13,7 @@ ChooseMenu::ChooseMenu(QWidget *parent) :
     l1->AddUnit(ui->labelTitle);
     l1->AddUnit(new QWidget*[3]{ui->labelTest,ui->pushButtonTest,ui->labelTestInfo},3);
     l1->AddUnit(new QWidget*[3]{ui->labelConfuse,ui->pushButtonConfuse,ui->labelConfuseInfo},3);
-    l1->AddUnit(new QWidget*[3]{ui->labelOrder,ui->radioButtonOrdered,ui->radioButtonRandom},3);
+    l1->AddUnit(new QWidget*[5]{ui->labelOrder,ui->radioButtonOrdered,ui->radioButtonRandom,ui->radioButtonSelect,ui->spinBoxSelect},5);
     l1->AddUnit(ui->pushButtonStart);
     l1->AddUnit(ui->labelFailed);
 
@@ -45,6 +45,8 @@ void ChooseMenu::Init(ChooseMode::Mode mode)
     testFilePath.clear();
     confuseFilePath.clear();
     ui->labelFailed->hide();
+    ui->spinBoxSelect->hide();
+    ui->spinBoxSelect->setValue(10);
     ui->radioButtonOrdered->setChecked(true);
 }
 
@@ -83,6 +85,8 @@ void ChooseMenu::on_pushButtonStart_clicked()
     bool testFileCheck=true;
     bool confuseFileCheck=true;
 
+    int wordCounter=0;
+
     for(int i=0;i<testFilePath.length();i++)
     {
         QFile file(testFilePath[i]);
@@ -99,6 +103,9 @@ void ChooseMenu::on_pushButtonStart_clicked()
             testFileCheck=false;
             break;
         }
+
+        QJsonArray jsonArray=jsonDoc.array();
+        wordCounter+=jsonArray.size();
     }
 
     for(int i=0;i<confuseFilePath.length();i++)
@@ -138,8 +145,33 @@ void ChooseMenu::on_pushButtonStart_clicked()
         return;
     }
 
+    QList<int> select;
+    select.clear();
+    if(ui->radioButtonSelect->isChecked()==true)
+    {
+        int needWord=ui->spinBoxSelect->value();
+        if(needWord>wordCounter)
+            needWord=wordCounter;
+        QList<int> selectList;
+        selectList.clear();
+        for(int i=0;i<wordCounter;i++)
+            selectList.append(i);
+
+        QTime time=QTime::currentTime();
+        qsrand(time.msec()+time.second()*1000);
+        for(int i=0;i<4*wordCounter;i++)
+        {
+            int n1=qrand()%wordCounter;
+            int n2=qrand()%wordCounter;
+            qSwap(selectList[n1],selectList[n2]);
+        }
+
+        for(int i=0;i<needWord;i++)
+            select.append(selectList[i]);
+    }
+
     ui->labelFailed->hide();
-    emit(ShowChoose(mode,order,testFilePath,confuseFilePath));
+    emit(ShowChoose(mode,order,testFilePath,confuseFilePath,select));
 }
 
 void ChooseMenu::on_radioButtonOrdered_toggled(bool checked)
@@ -152,4 +184,15 @@ void ChooseMenu::on_radioButtonRandom_toggled(bool checked)
 {
     if(checked==true)
         order=ChooseOrder::Random;
+}
+
+void ChooseMenu::on_radioButtonSelect_toggled(bool checked)
+{
+    if(checked==true)
+    {
+        order=ChooseOrder::Random;
+        ui->spinBoxSelect->show();
+    }
+    if(checked==false)
+        ui->spinBoxSelect->hide();
 }

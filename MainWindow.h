@@ -14,6 +14,9 @@
 #include "SpellMenu.h"
 #include "Spell.h"
 
+#include "LearnMenu.h"
+#include "Learn.h"
+
 namespace Ui
 {
     class MainWindow;
@@ -34,10 +37,13 @@ public slots:
     void ShowDataInput(QString path,QString name,int num);
 
     void ShowChooseMenu(ChooseMode::Mode mode);
-    void ShowChoose(ChooseMode::Mode mode,ChooseOrder::Order order,QStringList testFilePath,QStringList confuseFilePath);
+    void ShowChoose(ChooseMode::Mode mode,ChooseOrder::Order order,QStringList testFilePath,QStringList confuseFilePath,QList<int> select);
 
     void ShowSpellMenu();
-    void ShowSpell(SpellOrder::Order order,QStringList testFilePath);
+    void ShowSpell(SpellOrder::Order order,QStringList testFilePath,QList<int> select);
+
+    void ShowLearnMenu();
+    void ShowLearn(QStringList learnFilePath);
 
 protected:
     virtual void resizeEvent(QResizeEvent * event);
@@ -55,6 +61,9 @@ private:
 
     SpellMenu* spellMenu;
     Spell* spell;
+
+    LearnMenu* learnMenu;
+    Learn* learn;
 
     void HideAllFrame();
 };

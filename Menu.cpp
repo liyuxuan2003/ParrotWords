@@ -10,6 +10,7 @@ Menu::Menu(QWidget *parent) :
     l1=new LiEasyLayout(0,width(),height(),LiEasyLayout::left,0.6f);
 
     l1->AddUnit(ui->labelTitle);
+    l1->AddUnit(ui->pushButtonLearn);
     l1->AddUnit(ui->pushButtonChooseEC);
     l1->AddUnit(ui->pushButtonChooseCE);
     l1->AddUnit(ui->pushButtonSpellCE);
@@ -46,4 +47,9 @@ void Menu::on_pushButtonChooseCE_clicked()
 void Menu::on_pushButtonSpellCE_clicked()
 {
     emit(ShowSpellMenu());
+}
+
+void Menu::on_pushButtonLearn_clicked()
+{
+    emit(ShowLearnMenu());
 }

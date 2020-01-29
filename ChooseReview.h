@@ -16,7 +16,7 @@ public:
     explicit ChooseReview(QWidget *parent = nullptr);
     ~ChooseReview();
 
-    void Init(int rightNum,int wrongNum,int totalNum);
+    void Init(int rightNum,int wrongNum,int markNum,int totalNum);
     bool GetUserAns();
 
 private slots:

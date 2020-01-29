@@ -2,6 +2,7 @@
 #define CHOOSEMENU_H
 
 #include <QFrame>
+#include <QTime>
 #include <QFileDialog>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -67,9 +68,11 @@ private slots:
 
     void on_radioButtonRandom_toggled(bool checked);
 
+    void on_radioButtonSelect_toggled(bool checked);
+
 signals:
     void ShowMenu();
-    void ShowChoose(ChooseMode::Mode mode,ChooseOrder::Order order,QStringList testFilePath,QStringList confuseFilePath);
+    void ShowChoose(ChooseMode::Mode mode,ChooseOrder::Order order,QStringList testFilePath,QStringList confuseFilePath,QList<int> select);
 };
 
 #endif // CHOOSEMENU_H

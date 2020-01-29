@@ -6,6 +6,11 @@
 #include <QFrame>
 #include <QTime>
 #include <QKeyEvent>
+#include <QTextToSpeech>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonParseError>
 
 #include <LiLibrary/LiEasyLayout.h>
 #include <LiLibrary/LiFixedToLayout.h>
@@ -42,9 +47,13 @@ private slots:
 
     void on_pushButtonTip2_clicked();
 
+    void on_pushButtonTipR_clicked();
+
     void on_pushButtonTipA_clicked();
 
     void on_pushButtonTipHide_clicked();
+
+    void on_pushButtonMark_clicked();
 
 private:
     Ui::Spell *ui;
@@ -61,10 +70,14 @@ private:
     QStringList wordChineseTest;
     QStringList wordEnglishTest;
 
+    QTextToSpeech* tts;
+
     QList<int> toReview;
 
     int* record;
     int* testOrder;
+
+    bool isMarkClick;
 
     int nowNum;
     int totalNum;

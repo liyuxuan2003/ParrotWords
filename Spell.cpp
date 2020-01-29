@@ -14,9 +14,9 @@ Spell::Spell(QWidget *parent) :
     l1->AddUnit(ui->labelLocation);
     l1->AddUnit(ui->labelQuestion);
     l1->AddUnit(new QWidget*[5]{ui->line1,ui->line2,ui->line3,ui->line4,ui->labelInput},5);
-    l1->AddUnit(new QWidget*[4]{ui->pushButtonTip1,ui->pushButtonTip2,ui->pushButtonTipA,ui->pushButtonTipHide},4);
+    l1->AddUnit(new QWidget*[5]{ui->pushButtonTip1,ui->pushButtonTip2,ui->pushButtonTipR,ui->pushButtonTipA,ui->pushButtonTipHide},5);
     l1->AddUnit(new QWidget*[2]{ui->labelTips,ui->labelTipsContent},2);
-    l1->AddUnit(ui->pushButtonNext);
+    l1->AddUnit(new QWidget*[3]{ui->pushButtonNext,ui->pushButtonMark,ui->labelMark},3);
 
     l1->LayoutConfigDone();
 
@@ -24,6 +24,12 @@ Spell::Spell(QWidget *parent) :
 
     spellReview=new SpellReview();
     spellReview->hide();
+
+    tts = new QTextToSpeech(this);
+    tts->setLocale(QLocale::English);
+    tts->setRate(0.0);
+    tts->setPitch(1.0);
+    tts->setVolume(1.0);
 }
 
 Spell::~Spell()
@@ -44,10 +50,8 @@ void Spell::on_pushButtonExit_clicked()
 
 void Spell::Init(SpellOrder::Order order,QStringList testFilePath,QList<int> review)
 {
-
     ui->labelTitle->setText("中译英拼写练习");
-    if(review.length()!=0)
-        ui->labelTitle->setText(ui->labelTitle->text()+"-复习模式");
+
     this->testFilePath=testFilePath;
     this->order=order;
 
@@ -114,6 +118,7 @@ void Spell::GeneratePage()
     ui->labelQuestion->setText(wordChineseTest[testOrder[nowNum]]);
 
     nowEnterWord="";
+    isMarkClick=false;
 
     QString dotString="";
     for(int i=0;i<wordEnglishTest[testOrder[nowNum]].length();i++)
@@ -122,6 +127,9 @@ void Spell::GeneratePage()
     ui->labelInput->setText("<font color=\"#FFFFFF\">"+dotString+"</font>");
 
     ui->pushButtonNext->hide();
+
+    ui->labelMark->hide();
+    ui->pushButtonMark->hide();
 
     this->setFocus();
 }
@@ -134,9 +142,13 @@ void Spell::keyPressEvent(QKeyEvent *ev)
     if(ev->key()==Qt::Key_2)
         ui->pushButtonTip2->click();
     if(ev->key()==Qt::Key_3)
-        ui->pushButtonTipA->click();
+        ui->pushButtonTipR->click();
     if(ev->key()==Qt::Key_4)
+        ui->pushButtonTipA->click();
+    if(ev->key()==Qt::Key_5)
         ui->pushButtonTipHide->click();
+    if(ev->key()==Qt::Key_0 && nowEnterWord==wordEnglishTest[testOrder[nowNum]])
+        ui->pushButtonMark->click();
     if(ev->key()==Qt::Key_Space && nowEnterWord==wordEnglishTest[testOrder[nowNum]])
         ui->pushButtonNext->click();
     if(ev->key()==Qt::Key_Backspace)
@@ -161,9 +173,19 @@ void Spell::keyPressEvent(QKeyEvent *ev)
             ui->labelInput->setText(ui->labelInput->text()+"<font color=\"#FFFFFF\">.</font>");
     }
     if(nowEnterWord==wordEnglishTest[testOrder[nowNum]])
+    {
         ui->pushButtonNext->show();
+        ui->pushButtonMark->show();
+        if(isMarkClick==true)
+            ui->labelMark->show();
+    }
+
     if(nowEnterWord!=wordEnglishTest[testOrder[nowNum]])
+    {
         ui->pushButtonNext->hide();
+        ui->pushButtonMark->hide();
+        ui->labelMark->hide();
+    }
 }
 
 void Spell::on_pushButtonNext_clicked()
@@ -176,13 +198,16 @@ void Spell::on_pushButtonNext_clicked()
     else
     {
         int rightNum=0;
+        int markNum=0;
         int tipNum=0;
         int wrongNum=0;
         for(int i=0;i<totalNum;i++)
         {
             if(record[i]==0)
                 rightNum++;
-            if(record[i]==1 || record[i]==2)
+            if(record[i]==1)
+                markNum++;
+            if(record[i]==2)
                 tipNum++;
             if(record[i]==3)
                 wrongNum++;
@@ -206,7 +231,8 @@ void Spell::on_pushButtonTip1_clicked()
         ui->labelTipsContent->setText(QString(wordEnglishTest[testOrder[nowNum]][0]));
         for(int i=0;i<wordEnglishTest[testOrder[nowNum]].length()-1;i++)
             ui->labelTipsContent->setText(ui->labelTipsContent->text()+".");
-        record[nowNum]=std::max(record[nowNum],1);
+        if(nowEnterWord!=wordEnglishTest[testOrder[nowNum]])
+            record[nowNum]=std::max(record[nowNum],2);
     }
 }
 
@@ -217,14 +243,23 @@ void Spell::on_pushButtonTip2_clicked()
         ui->labelTipsContent->setText(QString(wordEnglishTest[testOrder[nowNum]][0])+QString(wordEnglishTest[testOrder[nowNum]][1]));
         for(int i=0;i<wordEnglishTest[testOrder[nowNum]].length()-2;i++)
             ui->labelTipsContent->setText(ui->labelTipsContent->text()+".");
-        record[nowNum]=std::max(record[nowNum],2);
+        if(nowEnterWord!=wordEnglishTest[testOrder[nowNum]])
+            record[nowNum]=std::max(record[nowNum],2);
     }
+}
+
+void Spell::on_pushButtonTipR_clicked()
+{
+    tts->say(wordEnglishTest[testOrder[nowNum]]);
+    if(nowEnterWord!=wordEnglishTest[testOrder[nowNum]])
+        record[nowNum]=std::max(record[nowNum],2);
 }
 
 void Spell::on_pushButtonTipA_clicked()
 {
     ui->labelTipsContent->setText(wordEnglishTest[testOrder[nowNum]]);
-    record[nowNum]=std::max(record[nowNum],3);
+    if(nowEnterWord!=wordEnglishTest[testOrder[nowNum]])
+        record[nowNum]=std::max(record[nowNum],3);
 }
 
 void Spell::on_pushButtonTipHide_clicked()
@@ -232,4 +267,11 @@ void Spell::on_pushButtonTipHide_clicked()
     ui->labelTipsContent->setText("");
     for(int i=0;i<wordEnglishTest[testOrder[nowNum]].length();i++)
         ui->labelTipsContent->setText(ui->labelTipsContent->text()+".");
+}
+
+void Spell::on_pushButtonMark_clicked()
+{
+    ui->labelMark->show();
+    record[nowNum]=std::max(record[nowNum],1);
+    isMarkClick=true;
 }

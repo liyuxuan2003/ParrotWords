@@ -46,11 +46,11 @@ private:
 
     QString path;
     QString name;
-    int num;
 
+    int num;
     int nowNum;
-    QString* wordChinese;
-    QString* wordEnglish;
+    QStringList wordChinese;
+    QStringList wordEnglish;
 
     void OnLocationChange(int offset);
 

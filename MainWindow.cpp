@@ -28,6 +28,12 @@ MainWindow::MainWindow(QWidget *parent) :
     spell=new Spell(this);
     spell->move(0,0);
 
+    learnMenu=new LearnMenu(this);
+    learnMenu->move(0,0);
+
+    learn=new Learn(this);
+    learn->move(0,0);
+
     HideAllFrame();
     menu->show();
 
@@ -58,8 +64,8 @@ MainWindow::MainWindow(QWidget *parent) :
         this,SLOT(ShowMenu()));
 
     connect(
-        chooseMenu,SIGNAL(ShowChoose(ChooseMode::Mode,ChooseOrder::Order,QStringList,QStringList)),
-        this,SLOT(ShowChoose(ChooseMode::Mode,ChooseOrder::Order,QStringList,QStringList)));
+        chooseMenu,SIGNAL(ShowChoose(ChooseMode::Mode,ChooseOrder::Order,QStringList,QStringList,QList<int>)),
+        this,SLOT(ShowChoose(ChooseMode::Mode,ChooseOrder::Order,QStringList,QStringList,QList<int>)));
 
     connect(
         choose,SIGNAL(ShowMenu()),
@@ -75,13 +81,29 @@ MainWindow::MainWindow(QWidget *parent) :
         this,SLOT(ShowMenu()));
 
     connect(
-        spellMenu,SIGNAL(ShowSpell(SpellOrder::Order,QStringList)),
-        this,SLOT(ShowSpell(SpellOrder::Order,QStringList)));
+        spellMenu,SIGNAL(ShowSpell(SpellOrder::Order,QStringList,QList<int>)),
+        this,SLOT(ShowSpell(SpellOrder::Order,QStringList,QList<int>)));
 
     connect(
         spell,SIGNAL(ShowMenu()),
         this,SLOT(ShowMenu()));
 
+    //Learn
+    connect(
+        menu,SIGNAL(ShowLearnMenu()),
+        this,SLOT(ShowLearnMenu()));
+
+    connect(
+        learnMenu,SIGNAL(ShowMenu()),
+        this,SLOT(ShowMenu()));
+
+    connect(
+        learnMenu,SIGNAL(ShowLearn(QStringList)),
+        this,SLOT(ShowLearn(QStringList)));
+
+    connect(
+        learn,SIGNAL(ShowMenu()),
+        this,SLOT(ShowMenu()));
 }
 
 MainWindow::~MainWindow()
@@ -101,6 +123,9 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 
     spellMenu->resize(width(),height());
     spell->resize(width(),height());
+
+    learnMenu->resize(width(),height());
+    learn->resize(width(),height());
 }
 
 void MainWindow::HideAllFrame()
@@ -115,6 +140,9 @@ void MainWindow::HideAllFrame()
 
     spellMenu->hide();
     spell->hide();
+
+    learnMenu->hide();
+    learn->hide();
 }
 
 void MainWindow::ShowMenu()
@@ -144,13 +172,11 @@ void MainWindow::ShowChooseMenu(ChooseMode::Mode mode)
     chooseMenu->Init(mode);
 }
 
-void MainWindow::ShowChoose(ChooseMode::Mode mode,ChooseOrder::Order order,QStringList testFilePath,QStringList confuseFilePath)
+void MainWindow::ShowChoose(ChooseMode::Mode mode,ChooseOrder::Order order,QStringList testFilePath,QStringList confuseFilePath,QList<int> select)
 {
     HideAllFrame();
-    QList<int> emptyList;
-    emptyList.clear();
     choose->show();
-    choose->Init(mode,order,testFilePath,confuseFilePath,emptyList);
+    choose->Init(mode,order,testFilePath,confuseFilePath,select);
 }
 
 void MainWindow::ShowSpellMenu()
@@ -160,11 +186,23 @@ void MainWindow::ShowSpellMenu()
     spellMenu->Init();
 }
 
-void MainWindow::ShowSpell(SpellOrder::Order order,QStringList testFilePath)
+void MainWindow::ShowSpell(SpellOrder::Order order,QStringList testFilePath,QList<int> select)
 {
     HideAllFrame();
-    QList<int> emptyList;
-    emptyList.clear();
     spell->show();
-    spell->Init(order,testFilePath,emptyList);
+    spell->Init(order,testFilePath,select);
+}
+
+void MainWindow::ShowLearnMenu()
+{
+    HideAllFrame();
+    learnMenu->show();
+    learnMenu->Init();
+}
+
+void MainWindow::ShowLearn(QStringList learnFilePath)
+{
+    HideAllFrame();
+    learn->show();
+    learn->Init(learnFilePath);
 }
