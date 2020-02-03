@@ -72,7 +72,7 @@
     <string>正确：12</string>
    </property>
   </widget>
-  <widget class="QLabel" name="labelWrongNum">
+  <widget class="QLabel" name="labelMarkNum">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -91,7 +91,7 @@
     <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>错误：18</string>
+    <string>标记：18</string>
    </property>
   </widget>
   <widget class="QLabel" name="labelTotalNum">
@@ -184,7 +184,7 @@ color: rgb(255, 255, 255);</string>
     <string>否</string>
    </property>
   </widget>
-  <widget class="QLabel" name="labelMarkNum">
+  <widget class="QLabel" name="labelWrongNum">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -203,7 +203,7 @@ color: rgb(255, 255, 255);</string>
     <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>标记：22</string>
+    <string>错误：22</string>
    </property>
   </widget>
  </widget>

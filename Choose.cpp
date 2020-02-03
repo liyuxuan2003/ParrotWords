@@ -22,6 +22,7 @@ Choose::Choose(QWidget *parent) :
     l1->LayoutConfigDone();
 
     l2->AddUnit(ui->pushButtonExit,width(),height(),LiFixedCorner::RightBottom);
+    l2->AddUnit(ui->pushButtonHelp,width(),height(),LiFixedCorner::RightTop);
 
     radioButtons[0]=ui->radioButtonA;
     radioButtons[1]=ui->radioButtonB;
@@ -30,6 +31,9 @@ Choose::Choose(QWidget *parent) :
 
     chooseReview=new ChooseReview();
     chooseReview->hide();
+
+    chooseHelp=new ChooseHelp();
+    chooseHelp->hide();
 }
 
 Choose::~Choose()
@@ -308,4 +312,9 @@ void Choose::on_pushButtonMark_clicked()
     ui->labelMark->show();
     record[nowNum]=std::max(record[nowNum],1);
     toReview.append(testOrder[nowNum]);
+}
+
+void Choose::on_pushButtonHelp_clicked()
+{
+    chooseHelp->exec();
 }

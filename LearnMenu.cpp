@@ -12,6 +12,7 @@ LearnMenu::LearnMenu(QWidget *parent) :
 
     l1->AddUnit(ui->labelTitle);
     l1->AddUnit(new QWidget*[3]{ui->labelLearn,ui->pushButtonTest,ui->labelLearnInfo},3);
+    l1->AddUnit(new QWidget*[4]{ui->labelSetting,ui->radioButtonCE,ui->radioButtonC,ui->radioButtonE},4);
     l1->AddUnit(ui->pushButtonStart);
     l1->AddUnit(ui->labelFailed);
 
@@ -35,7 +36,11 @@ void LearnMenu::Init()
 {
     ui->labelLearnInfo->setText("未选择学习单词库");
     ui->labelFailed->hide();
+    ui->radioButtonCE->setChecked(true);
     learnFilePath.clear();
+    showC=true;
+    showE=true;
+    ui->radioButtonCE->clicked();
 }
 
 void LearnMenu::on_pushButtonTest_clicked()
@@ -84,10 +89,28 @@ void LearnMenu::on_pushButtonStart_clicked()
     }
 
     ui->labelFailed->hide();
-    emit(ShowLearn(learnFilePath));
+    emit(ShowLearn(learnFilePath,showC,showE));
 }
 
 void LearnMenu::on_pushButtonExit_clicked()
 {
     emit(ShowMenu());
+}
+
+void LearnMenu::on_radioButtonCE_toggled(bool checked)
+{
+    showC=true;
+    showE=true;
+}
+
+void LearnMenu::on_radioButtonC_toggled(bool checked)
+{
+    showC=true;
+    showE=false;
+}
+
+void LearnMenu::on_radioButtonE_toggled(bool checked)
+{
+    showC=false;
+    showE=true;
 }

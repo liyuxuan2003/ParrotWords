@@ -3,8 +3,10 @@
 
 #include <QFrame>
 #include <LiLibrary/LiEasyLayout.h>
+#include <LiLibrary/LiFixedToLayout.h>
 
-#include"ChooseMenu.h"
+#include "ChooseMenu.h"
+#include "About.h"
 
 namespace Ui
 {
@@ -33,10 +35,18 @@ private slots:
 
     void on_pushButtonLearn_clicked();
 
+    void on_pushButtonAbout_clicked();
+
+    void on_pushButtonExit_clicked();
+
 private:
     Ui::Menu* ui;
 
+    About* about;
+
     LiEasyLayout* l1;
+
+    LiFixedToLayout* l2;
 
 signals:
     void ShowDataInputMenu();

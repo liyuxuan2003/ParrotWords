@@ -43,7 +43,7 @@ public slots:
     void ShowSpell(SpellOrder::Order order,QStringList testFilePath,QList<int> select);
 
     void ShowLearnMenu();
-    void ShowLearn(QStringList learnFilePath);
+    void ShowLearn(QStringList learnFilePath,bool showC,bool showE);
 
 protected:
     virtual void resizeEvent(QResizeEvent * event);

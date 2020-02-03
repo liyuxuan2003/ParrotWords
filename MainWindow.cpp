@@ -98,8 +98,8 @@ MainWindow::MainWindow(QWidget *parent) :
         this,SLOT(ShowMenu()));
 
     connect(
-        learnMenu,SIGNAL(ShowLearn(QStringList)),
-        this,SLOT(ShowLearn(QStringList)));
+        learnMenu,SIGNAL(ShowLearn(QStringList,bool,bool)),
+        this,SLOT(ShowLearn(QStringList,bool,bool)));
 
     connect(
         learn,SIGNAL(ShowMenu()),
@@ -200,9 +200,9 @@ void MainWindow::ShowLearnMenu()
     learnMenu->Init();
 }
 
-void MainWindow::ShowLearn(QStringList learnFilePath)
+void MainWindow::ShowLearn(QStringList learnFilePath,bool showC,bool showE)
 {
     HideAllFrame();
     learn->show();
-    learn->Init(learnFilePath);
+    learn->Init(learnFilePath,showC,showE);
 }

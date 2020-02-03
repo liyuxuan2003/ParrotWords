@@ -43,7 +43,13 @@ SOURCES += \
     Spell.cpp \
     SpellReview.cpp \
     LearnMenu.cpp \
-    Learn.cpp
+    Learn.cpp \
+    ChooseHelp.cpp \
+    LearnHelp.cpp \
+    SpellHelp.cpp \
+    About.cpp
+
+RC_FILE += Version.rc
 
 HEADERS += \
         MainWindow.h \
@@ -61,7 +67,12 @@ HEADERS += \
     Spell.h \
     SpellReview.h \
     LearnMenu.h \
-    Learn.h
+    Learn.h \
+    ChooseHelp.h \
+    LearnHelp.h \
+    SpellHelp.h \
+    About.h \
+    Version.rc
 
 FORMS += \
         MainWindow.ui \
@@ -75,9 +86,24 @@ FORMS += \
     Spell.ui \
     SpellReview.ui \
     LearnMenu.ui \
-    Learn.ui
+    Learn.ui \
+    ChooseHelp.ui \
+    LearnHelp.ui \
+    SpellHelp.ui \
+    About.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    Icon/ParrotWords.png \
+    Icon/ParrotWords-16.ico \
+    Icon/ParrotWords-32.ico \
+    Icon/ParrotWords-48.ico \
+    Icon/ParrotWords-64.ico \
+    Icon/ParrotWords-128.ico
+
+RESOURCES += \
+    icon.qrc

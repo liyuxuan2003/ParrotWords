@@ -21,9 +21,13 @@ Spell::Spell(QWidget *parent) :
     l1->LayoutConfigDone();
 
     l2->AddUnit(ui->pushButtonExit,width(),height(),LiFixedCorner::RightBottom);
+    l2->AddUnit(ui->pushButtonHelp,width(),height(),LiFixedCorner::RightTop);
 
     spellReview=new SpellReview();
     spellReview->hide();
+
+    spellHelp=new SpellHelp();
+    spellHelp->hide();
 
     tts = new QTextToSpeech(this);
     tts->setLocale(QLocale::English);
@@ -137,54 +141,65 @@ void Spell::GeneratePage()
 void Spell::keyPressEvent(QKeyEvent *ev)
 {
     this->setFocus();
-    if(ev->key()==Qt::Key_1)
-        ui->pushButtonTip1->click();
-    if(ev->key()==Qt::Key_2)
-        ui->pushButtonTip2->click();
-    if(ev->key()==Qt::Key_3)
-        ui->pushButtonTipR->click();
-    if(ev->key()==Qt::Key_4)
-        ui->pushButtonTipA->click();
-    if(ev->key()==Qt::Key_5)
-        ui->pushButtonTipHide->click();
-    if(ev->key()==Qt::Key_0 && nowEnterWord==wordEnglishTest[testOrder[nowNum]])
-        ui->pushButtonMark->click();
+
+    bool isNeedRewrite=false;
+
     if(ev->key()==Qt::Key_Space && nowEnterWord==wordEnglishTest[testOrder[nowNum]])
         ui->pushButtonNext->click();
-    if(ev->key()==Qt::Key_Backspace)
+    else if(ev->key()==Qt::Key_1)
+        ui->pushButtonTip1->click();
+    else if(ev->key()==Qt::Key_2)
+        ui->pushButtonTip2->click();
+    else if(ev->key()==Qt::Key_3)
+        ui->pushButtonTipR->click();
+    else if(ev->key()==Qt::Key_4)
+        ui->pushButtonTipA->click();
+    else if(ev->key()==Qt::Key_5)
+        ui->pushButtonTipHide->click();
+    else if(ev->key()==Qt::Key_0 && nowEnterWord==wordEnglishTest[testOrder[nowNum]])
+        ui->pushButtonMark->click();
+    else if(ev->key()==Qt::Key_Backspace)
+    {
         nowEnterWord.chop(1);
-    if(ev->key()>=Qt::Key_A && ev->key()<=Qt::Key_Z && nowEnterWord.length()<wordEnglishTest[testOrder[nowNum]].length())
+        isNeedRewrite=true;
+    }
+    else if(ev->key()>=Qt::Key_A && ev->key()<=Qt::Key_Z && nowEnterWord.length()<wordEnglishTest[testOrder[nowNum]].length())
     {
         char keyInput='a';
         keyInput=keyInput+(ev->key()-Qt::Key_A);
         nowEnterWord.append(keyInput);
-    }
-    ui->labelInput->clear();
-    for(int i=0;i<wordEnglishTest[testOrder[nowNum]].length();i++)
-    {
-        if(i<nowEnterWord.length())
-        {
-            if(wordEnglishTest[testOrder[nowNum]][i]==nowEnterWord[i])
-                ui->labelInput->setText(ui->labelInput->text()+"<font color=\"#FFFFFF\">"+nowEnterWord[i]+"</font>");
-            if(wordEnglishTest[testOrder[nowNum]][i]!=nowEnterWord[i])
-                ui->labelInput->setText(ui->labelInput->text()+"<font color=\"#FF0000\">"+nowEnterWord[i]+"</font>");
-        }
-        else
-            ui->labelInput->setText(ui->labelInput->text()+"<font color=\"#FFFFFF\">.</font>");
-    }
-    if(nowEnterWord==wordEnglishTest[testOrder[nowNum]])
-    {
-        ui->pushButtonNext->show();
-        ui->pushButtonMark->show();
-        if(isMarkClick==true)
-            ui->labelMark->show();
+        isNeedRewrite=true;
     }
 
-    if(nowEnterWord!=wordEnglishTest[testOrder[nowNum]])
+    if(isNeedRewrite==true)
     {
-        ui->pushButtonNext->hide();
-        ui->pushButtonMark->hide();
-        ui->labelMark->hide();
+        ui->labelInput->clear();
+        for(int i=0;i<wordEnglishTest[testOrder[nowNum]].length();i++)
+        {
+            if(i<nowEnterWord.length())
+            {
+                if(wordEnglishTest[testOrder[nowNum]][i]==nowEnterWord[i])
+                    ui->labelInput->setText(ui->labelInput->text()+"<font color=\"#FFFFFF\">"+nowEnterWord[i]+"</font>");
+                if(wordEnglishTest[testOrder[nowNum]][i]!=nowEnterWord[i])
+                    ui->labelInput->setText(ui->labelInput->text()+"<font color=\"#FF0000\">"+nowEnterWord[i]+"</font>");
+            }
+            else
+                ui->labelInput->setText(ui->labelInput->text()+"<font color=\"#FFFFFF\">.</font>");
+        }
+        if(nowEnterWord==wordEnglishTest[testOrder[nowNum]])
+        {
+            ui->pushButtonNext->show();
+            ui->pushButtonMark->show();
+            if(isMarkClick==true)
+                ui->labelMark->show();
+        }
+
+        if(nowEnterWord!=wordEnglishTest[testOrder[nowNum]])
+        {
+            ui->pushButtonNext->hide();
+            ui->pushButtonMark->hide();
+            ui->labelMark->hide();
+        }
     }
 }
 
@@ -212,7 +227,7 @@ void Spell::on_pushButtonNext_clicked()
             if(record[i]==3)
                 wrongNum++;
         }
-        spellReview->Init(rightNum,tipNum,wrongNum,totalNum);
+        spellReview->Init(rightNum,markNum,tipNum,wrongNum,totalNum);
         spellReview->exec();
         if(spellReview->GetUserAns()==true)
         {
@@ -274,4 +289,9 @@ void Spell::on_pushButtonMark_clicked()
     ui->labelMark->show();
     record[nowNum]=std::max(record[nowNum],1);
     isMarkClick=true;
+}
+
+void Spell::on_pushButtonHelp_clicked()
+{
+    spellHelp->exec();
 }

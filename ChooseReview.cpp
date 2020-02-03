@@ -20,17 +20,17 @@ void ChooseReview::Init(int rightNum,int wrongNum,int markNum,int totalNum)
     ui->labelMarkNum->setText("标记："+QString::number(markNum));
     ui->labelTotalNum->setText("总计："+QString::number(totalNum));
     userAns=false;
-    if(wrongNum!=0)
-    {
-        ui->labelReview->setText("是否进入复习模式？");
-        ui->pushButtonYes->show();
-        ui->pushButtonNo->show();
-    }
-    if(wrongNum==0)
+    if(rightNum==totalNum)
     {
         ui->labelReview->setText("关闭窗口返回首页！");
         ui->pushButtonYes->hide();
         ui->pushButtonNo->hide();
+    }
+    else
+    {
+        ui->labelReview->setText("是否进入复习模式？");
+        ui->pushButtonYes->show();
+        ui->pushButtonNo->show();
     }
 }
 

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>About</class>
+ <widget class="QDialog" name="About">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>700</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>关于</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(81, 81, 81);</string>
+  </property>
+  <widget class="QLabel" name="labelExtraInfo2">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>360</y>
+     <width>401</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>Copyright © 2020 Li Yuxuan   All Rights Reserved.</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelProjectIcon">
+   <property name="geometry">
+    <rect>
+     <x>590</x>
+     <y>297</y>
+     <width>81</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/PNG/Icon/ParrotWords.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelVersion">
+   <property name="geometry">
+    <rect>
+     <x>640</x>
+     <y>25</y>
+     <width>41</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>v1.0</string>
+   </property>
+  </widget>
+  <widget class="QPlainTextEdit" name="plainTextEdit">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>80</y>
+     <width>521</width>
+     <height>241</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+border-color: rgb(64, 66, 68);</string>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+   <property name="plainText">
+    <string>鹦鹉单词是一个用于记忆英语单词的软件，得名于鹦鹉学舌。
+
+软件提供了四种模式：
+
+1.自主学习模式
+
+2.中译英选择练习
+
+3.英译中选择练习
+
+4.英译中拼写练习
+
+软件可以通过数据写入功能创建词库，所创建的词库不依赖于软件，而是以独立的JSON文件保存，灵活性强，易于修改。
+
+该项目在Github上开源：https://github.com/liyuxuan2003/ParrotWords
+
+------------------------
+
+我的个人网站：     http://lyx.xnwy.org
+
+我的Github主页： https://github.com/liyuxuan2003
+</string>
+   </property>
+   <property name="textInteractionFlags">
+    <set>Qt::TextSelectableByMouse</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelExtraInfo1">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>340</y>
+     <width>401</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>Designed and Developed by Li Yuxuan.</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>15</y>
+     <width>331</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>关于 鹦鹉单词 / ParrotWords</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

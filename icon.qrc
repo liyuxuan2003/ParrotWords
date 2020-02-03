@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/PNG">
+        <file>Icon/ParrotWords.png</file>
+    </qresource>
+    <qresource prefix="/ICO">
+        <file>Icon/ParrotWords-16.ico</file>
+        <file>Icon/ParrotWords-32.ico</file>
+        <file>Icon/ParrotWords-48.ico</file>
+        <file>Icon/ParrotWords-64.ico</file>
+        <file>Icon/ParrotWords-128.ico</file>
+    </qresource>
+</RCC>

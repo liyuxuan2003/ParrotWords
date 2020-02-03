@@ -20,12 +20,16 @@ Learn::Learn(QWidget *parent) :
     l1->LayoutConfigDone();
 
     l2->AddUnit(ui->pushButtonExit,width(),height(),LiFixedCorner::RightBottom);
+    l2->AddUnit(ui->pushButtonHelp,width(),height(),LiFixedCorner::RightTop);
 
     tts=new QTextToSpeech(this);
     tts->setLocale(QLocale::English);
     tts->setRate(0.0);
     tts->setPitch(1.0);
     tts->setVolume(1.0);
+
+    learnHelp=new LearnHelp();
+    learnHelp->hide();
 }
 
 Learn::~Learn()
@@ -39,7 +43,7 @@ void Learn::resizeEvent(QResizeEvent *event)
     l2->ResizeWithFixedToLayout(width(),height());
 }
 
-void Learn::Init(QStringList learnFilePath)
+void Learn::Init(QStringList learnFilePath,bool showC,bool showE)
 {
     this->learnFilePath=learnFilePath;
 
@@ -76,8 +80,8 @@ void Learn::Init(QStringList learnFilePath)
 
     for(int i=0;i<totalNum;i++)
     {
-        isShowChinese[i]=true;
-        isShowEnglish[i]=true;
+        isShowChinese[i]=showC;
+        isShowEnglish[i]=showE;
     }
 
     GeneratePage();
@@ -182,4 +186,9 @@ void Learn::on_pushButtonNext_clicked()
 void Learn::on_pushButtonExit_clicked()
 {
     emit(ShowMenu());
+}
+
+void Learn::on_pushButtonHelp_clicked()
+{
+    learnHelp->exec();
 }

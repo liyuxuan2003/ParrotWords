@@ -42,7 +42,7 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>290</y>
+     <y>510</y>
      <width>161</width>
      <height>51</height>
     </rect>
@@ -65,7 +65,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>360</y>
+     <y>580</y>
      <width>441</width>
      <height>31</height>
     </rect>
@@ -171,6 +171,103 @@ color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>选择单词库</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelSetting">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>280</y>
+     <width>131</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>默认状态设置：</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="radioButtonCE">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>285</y>
+     <width>221</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>13</pointsize>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>同时显示中文和英文</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="radioButtonC">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>340</y>
+     <width>221</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>13</pointsize>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>仅显示中文</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="radioButtonE">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>400</y>
+     <width>221</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>13</pointsize>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>仅显示英文</string>
    </property>
   </widget>
  </widget>

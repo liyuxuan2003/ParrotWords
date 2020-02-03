@@ -20,7 +20,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>276</y>
+     <y>281</y>
      <width>271</width>
      <height>61</height>
     </rect>
@@ -38,11 +38,11 @@
     <string>是否进入复习模式？</string>
    </property>
   </widget>
-  <widget class="QLabel" name="labelWrongNum">
+  <widget class="QLabel" name="labelTipNum">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>190</y>
+     <y>170</y>
      <width>121</width>
      <height>21</height>
     </rect>
@@ -57,14 +57,14 @@
     <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>错误：20</string>
+    <string>提示：20</string>
    </property>
   </widget>
   <widget class="QLabel" name="labelRightNum">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>90</y>
+     <y>82</y>
      <width>121</width>
      <height>21</height>
     </rect>
@@ -108,7 +108,7 @@
    <property name="geometry">
     <rect>
      <x>191</x>
-     <y>290</y>
+     <y>295</y>
      <width>81</width>
      <height>31</height>
     </rect>
@@ -127,11 +127,11 @@ color: rgb(255, 255, 255);</string>
     <string>是</string>
    </property>
   </widget>
-  <widget class="QLabel" name="labelTipNum">
+  <widget class="QLabel" name="labelMarkNum">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>140</y>
+     <y>126</y>
      <width>121</width>
      <height>21</height>
     </rect>
@@ -146,14 +146,14 @@ color: rgb(255, 255, 255);</string>
     <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>提示：18</string>
+    <string>标记：18</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButtonNo">
    <property name="geometry">
     <rect>
      <x>290</x>
-     <y>290</y>
+     <y>295</y>
      <width>81</width>
      <height>31</height>
     </rect>
@@ -176,7 +176,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>240</y>
+     <y>258</y>
      <width>121</width>
      <height>21</height>
     </rect>
@@ -192,6 +192,28 @@ color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>总计：50</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelWrongNum">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>214</y>
+     <width>121</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>错误：20</string>
    </property>
   </widget>
  </widget>

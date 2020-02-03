@@ -39,14 +39,20 @@ private:
 
     QStringList learnFilePath;
 
+    bool showC;
+    bool showE;
+
 signals:
     void ShowMenu();
-    void ShowLearn(QStringList learnFilePath);
+    void ShowLearn(QStringList learnFilePath,bool showC,bool showE);
 
 private slots:
     void on_pushButtonTest_clicked();
     void on_pushButtonStart_clicked();
     void on_pushButtonExit_clicked();
+    void on_radioButtonCE_toggled(bool checked);
+    void on_radioButtonC_toggled(bool checked);
+    void on_radioButtonE_toggled(bool checked);
 };
 
 #endif // LEARNMENU_H

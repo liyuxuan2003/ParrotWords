@@ -17,6 +17,7 @@
 
 #include "SpellMenu.h"
 #include "SpellReview.h"
+#include "SpellHelp.h"
 
 namespace Ui
 {
@@ -55,6 +56,8 @@ private slots:
 
     void on_pushButtonMark_clicked();
 
+    void on_pushButtonHelp_clicked();
+
 private:
     Ui::Spell *ui;
 
@@ -62,6 +65,8 @@ private:
     LiFixedToLayout* l2;
 
     SpellReview* spellReview;
+
+    SpellHelp* spellHelp;
 
     SpellOrder::Order order;
 

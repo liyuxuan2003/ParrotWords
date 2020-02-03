@@ -2,6 +2,7 @@
 #define SPELLREVIEW_H
 
 #include <QDialog>
+#include <QDebug>
 
 namespace Ui {
 class SpellReview;
@@ -15,7 +16,7 @@ public:
     explicit SpellReview(QWidget *parent = nullptr);
     ~SpellReview();
 
-    void Init(int rightNum,int tipNum,int wrongNum,int totalNum);
+    void Init(int rightNum,int markNum,int tipNum,int wrongNum,int totalNum);
     bool GetUserAns();
 
 private slots:

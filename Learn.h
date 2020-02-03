@@ -13,6 +13,8 @@
 #include <LiLibrary/LiEasyLayout.h>
 #include <LiLibrary/LiFixedToLayout.h>
 
+#include "LearnHelp.h"
+
 namespace Ui
 {
     class Learn;
@@ -26,7 +28,7 @@ public:
     explicit Learn(QWidget *parent = nullptr);
     ~Learn();
 
-    void Init(QStringList learnFilePath);
+    void Init(QStringList learnFilePath,bool showC,bool showE);
 
 protected:
     virtual void resizeEvent(QResizeEvent * event);
@@ -35,6 +37,8 @@ protected:
 
 private:
     Ui::Learn *ui;
+
+    LearnHelp* learnHelp;
 
     LiEasyLayout* l1;
     LiFixedToLayout* l2;
@@ -66,6 +70,7 @@ private slots:
     void on_pushButtonPrev_clicked();
     void on_pushButtonNext_clicked();
     void on_pushButtonExit_clicked();
+    void on_pushButtonHelp_clicked();
 };
 
 #endif // LEARN_H

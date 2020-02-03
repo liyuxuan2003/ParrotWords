@@ -17,6 +17,7 @@
 
 #include "ChooseMenu.h"
 #include "ChooseReview.h"
+#include "ChooseHelp.h"
 
 namespace Ui
 {
@@ -45,10 +46,14 @@ private slots:
 
     void on_pushButtonMark_clicked();
 
+    void on_pushButtonHelp_clicked();
+
 private:
     Ui::Choose *ui;
 
     ChooseReview* chooseReview;
+
+    ChooseHelp* chooseHelp;
 
     LiEasyLayout* l1;
     LiFixedToLayout* l2;
