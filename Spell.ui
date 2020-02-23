@@ -498,6 +498,9 @@ color: rgb(255, 255, 255);</string>
      <bold>true</bold>
     </font>
    </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
    <property name="styleSheet">
     <string notr="true">image: url(:/PNG/Icon/Help.png);</string>
    </property>
@@ -521,6 +524,9 @@ color: rgb(255, 255, 255);</string>
      <weight>75</weight>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
    </property>
    <property name="styleSheet">
     <string notr="true">image: url(:/PNG/Icon/Search.png);</string>

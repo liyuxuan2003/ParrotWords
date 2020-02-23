@@ -47,8 +47,8 @@ private:
 
     QStringList learnFilePath;
 
-    QStringList wordChineseLearn;
-    QStringList wordEnglishLearn;
+    QStringList wordChinese;
+    QStringList wordEnglish;
 
     QTextToSpeech* tts;
     QMediaPlayer* player;

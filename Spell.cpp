@@ -65,8 +65,8 @@ void Spell::Init(OrderEnum::Order order,QStringList testFilePath,QList<int> revi
 
     this->source=source;
 
-    wordChineseTest.clear();
-    wordEnglishTest.clear();
+    wordChinese.clear();
+    wordEnglish.clear();
     toReview.clear();
 
     for(int i=0;i<testFilePath.length();i++)
@@ -83,15 +83,15 @@ void Spell::Init(OrderEnum::Order order,QStringList testFilePath,QList<int> revi
         for(int i=0;i<jsonArray.size();i++)
         {
             QJsonObject jsonObject=jsonArray[i].toObject();
-            wordChineseTest.append(jsonObject.value("wordChinese").toString());
-            wordEnglishTest.append(jsonObject.value("wordEnglish").toString());
+            wordChinese.append(jsonObject.value("wordChinese").toString());
+            wordEnglish.append(jsonObject.value("wordEnglish").toString());
         }
     }
 
     nowNum=0;
     if(review.length()==0)
     {
-        totalNum=wordChineseTest.length();
+        totalNum=wordChinese.length();
         testOrder=new int[totalNum];
         for(int i=0;i<totalNum;i++)
             testOrder[i]=i;
@@ -125,13 +125,13 @@ void Spell::Init(OrderEnum::Order order,QStringList testFilePath,QList<int> revi
 void Spell::GeneratePage()
 {
     ui->labelLocation->setText("当前题目："+QString::number(nowNum+1)+"/"+QString::number(totalNum));
-    ui->labelQuestion->setText(wordChineseTest[testOrder[nowNum]]);
+    ui->labelQuestion->setText(wordChinese[testOrder[nowNum]]);
 
     nowEnterWord="";
     isMarkClick=false;
 
     QString dotString="";
-    for(int i=0;i<wordEnglishTest[testOrder[nowNum]].length();i++)
+    for(int i=0;i<wordEnglish[testOrder[nowNum]].length();i++)
         dotString.append(".");
     ui->labelTipsContent->setText(dotString);
     ui->labelInput->setText("<font color=\"#FFFFFF\">"+dotString+"</font>");
@@ -150,7 +150,7 @@ void Spell::keyPressEvent(QKeyEvent *ev)
 
     bool isNeedRewrite=false;
 
-    if(ev->key()==Qt::Key_Space && nowEnterWord==wordEnglishTest[testOrder[nowNum]])
+    if(ev->key()==Qt::Key_Space && nowEnterWord==wordEnglish[testOrder[nowNum]])
         ui->pushButtonNext->click();
     else if(ev->key()==Qt::Key_1)
         ui->pushButtonTip1->click();
@@ -162,14 +162,14 @@ void Spell::keyPressEvent(QKeyEvent *ev)
         ui->pushButtonTipA->click();
     else if(ev->key()==Qt::Key_5)
         ui->pushButtonTipHide->click();
-    else if(ev->key()==Qt::Key_0 && nowEnterWord==wordEnglishTest[testOrder[nowNum]])
+    else if(ev->key()==Qt::Key_0 && nowEnterWord==wordEnglish[testOrder[nowNum]])
         ui->pushButtonMark->click();
     else if(ev->key()==Qt::Key_Backspace)
     {
         nowEnterWord.chop(1);
         isNeedRewrite=true;
     }
-    else if(ev->key()>=Qt::Key_A && ev->key()<=Qt::Key_Z && nowEnterWord.length()<wordEnglishTest[testOrder[nowNum]].length())
+    else if(ev->key()>=Qt::Key_A && ev->key()<=Qt::Key_Z && nowEnterWord.length()<wordEnglish[testOrder[nowNum]].length())
     {
         char keyInput='a';
         keyInput=keyInput+(ev->key()-Qt::Key_A);
@@ -180,19 +180,19 @@ void Spell::keyPressEvent(QKeyEvent *ev)
     if(isNeedRewrite==true)
     {
         ui->labelInput->clear();
-        for(int i=0;i<wordEnglishTest[testOrder[nowNum]].length();i++)
+        for(int i=0;i<wordEnglish[testOrder[nowNum]].length();i++)
         {
             if(i<nowEnterWord.length())
             {
-                if(wordEnglishTest[testOrder[nowNum]][i]==nowEnterWord[i])
+                if(wordEnglish[testOrder[nowNum]][i]==nowEnterWord[i])
                     ui->labelInput->setText(ui->labelInput->text()+"<font color=\"#FFFFFF\">"+nowEnterWord[i]+"</font>");
-                if(wordEnglishTest[testOrder[nowNum]][i]!=nowEnterWord[i])
+                if(wordEnglish[testOrder[nowNum]][i]!=nowEnterWord[i])
                     ui->labelInput->setText(ui->labelInput->text()+"<font color=\"#FF0000\">"+nowEnterWord[i]+"</font>");
             }
             else
                 ui->labelInput->setText(ui->labelInput->text()+"<font color=\"#FFFFFF\">.</font>");
         }
-        if(nowEnterWord==wordEnglishTest[testOrder[nowNum]])
+        if(nowEnterWord==wordEnglish[testOrder[nowNum]])
         {
             ui->pushButtonNext->show();
             ui->pushButtonMark->show();
@@ -200,7 +200,7 @@ void Spell::keyPressEvent(QKeyEvent *ev)
                 ui->labelMark->show();
         }
 
-        if(nowEnterWord!=wordEnglishTest[testOrder[nowNum]])
+        if(nowEnterWord!=wordEnglish[testOrder[nowNum]])
         {
             ui->pushButtonNext->hide();
             ui->pushButtonMark->hide();
@@ -247,24 +247,24 @@ void Spell::on_pushButtonNext_clicked()
 
 void Spell::on_pushButtonTip1_clicked()
 {
-    if(wordChineseTest[testOrder[nowNum]].length()>=1)
+    if(wordChinese[testOrder[nowNum]].length()>=1)
     {
-        ui->labelTipsContent->setText(QString(wordEnglishTest[testOrder[nowNum]][0]));
-        for(int i=0;i<wordEnglishTest[testOrder[nowNum]].length()-1;i++)
+        ui->labelTipsContent->setText(QString(wordEnglish[testOrder[nowNum]][0]));
+        for(int i=0;i<wordEnglish[testOrder[nowNum]].length()-1;i++)
             ui->labelTipsContent->setText(ui->labelTipsContent->text()+".");
-        if(nowEnterWord!=wordEnglishTest[testOrder[nowNum]])
+        if(nowEnterWord!=wordEnglish[testOrder[nowNum]])
             record[nowNum]=std::max(record[nowNum],2);
     }
 }
 
 void Spell::on_pushButtonTip2_clicked()
 {
-    if(wordChineseTest[testOrder[nowNum]].length()>=2)
+    if(wordChinese[testOrder[nowNum]].length()>=2)
     {
-        ui->labelTipsContent->setText(QString(wordEnglishTest[testOrder[nowNum]][0])+QString(wordEnglishTest[testOrder[nowNum]][1]));
-        for(int i=0;i<wordEnglishTest[testOrder[nowNum]].length()-2;i++)
+        ui->labelTipsContent->setText(QString(wordEnglish[testOrder[nowNum]][0])+QString(wordEnglish[testOrder[nowNum]][1]));
+        for(int i=0;i<wordEnglish[testOrder[nowNum]].length()-2;i++)
             ui->labelTipsContent->setText(ui->labelTipsContent->text()+".");
-        if(nowEnterWord!=wordEnglishTest[testOrder[nowNum]])
+        if(nowEnterWord!=wordEnglish[testOrder[nowNum]])
             record[nowNum]=std::max(record[nowNum],2);
     }
 }
@@ -273,30 +273,30 @@ void Spell::on_pushButtonTipR_clicked()
 {
     if(source==AudioSourceEnum::Youdao)
     {
-        player->setMedia(QUrl("http://dict.youdao.com/speech?audio="+wordEnglishTest[nowNum]));
+        player->setMedia(QUrl("http://dict.youdao.com/speech?audio="+wordEnglish[nowNum]));
         player->play();
     }
 
     if(source==AudioSourceEnum::Machine)
     {
-        tts->say(wordEnglishTest[nowNum]);
+        tts->say(wordEnglish[nowNum]);
     }
 
-    if(nowEnterWord!=wordEnglishTest[testOrder[nowNum]])
+    if(nowEnterWord!=wordEnglish[testOrder[nowNum]])
         record[nowNum]=std::max(record[nowNum],2);
 }
 
 void Spell::on_pushButtonTipA_clicked()
 {
-    ui->labelTipsContent->setText(wordEnglishTest[testOrder[nowNum]]);
-    if(nowEnterWord!=wordEnglishTest[testOrder[nowNum]])
+    ui->labelTipsContent->setText(wordEnglish[testOrder[nowNum]]);
+    if(nowEnterWord!=wordEnglish[testOrder[nowNum]])
         record[nowNum]=std::max(record[nowNum],3);
 }
 
 void Spell::on_pushButtonTipHide_clicked()
 {
     ui->labelTipsContent->setText("");
-    for(int i=0;i<wordEnglishTest[testOrder[nowNum]].length();i++)
+    for(int i=0;i<wordEnglish[testOrder[nowNum]].length();i++)
         ui->labelTipsContent->setText(ui->labelTipsContent->text()+".");
 }
 

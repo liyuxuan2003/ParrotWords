@@ -50,7 +50,11 @@ SOURCES += \
     SpellHelp.cpp \
     About.cpp \
     Search.cpp \
-    WordCard.cpp
+    WordCard.cpp \
+    SelfMenu.cpp \
+    Self.cpp \
+    SelfReview.cpp \
+    SelfHelp.cpp
 
 RC_FILE += Version.rc
 
@@ -78,7 +82,11 @@ HEADERS += \
     Version.rc \
     GlobalEnum.h \
     Search.h \
-    WordCard.h
+    WordCard.h \
+    SelfMenu.h \
+    Self.h \
+    SelfReview.h \
+    SelfHelp.h
 
 FORMS += \
         MainWindow.ui \
@@ -98,7 +106,11 @@ FORMS += \
     SpellHelp.ui \
     About.ui \
     Search.ui \
-    WordCard.ui
+    WordCard.ui \
+    SelfMenu.ui \
+    Self.ui \
+    SelfReview.ui \
+    SelfHelp.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

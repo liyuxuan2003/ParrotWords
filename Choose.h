@@ -77,8 +77,8 @@ private:
     QStringList testFilePath;
     QStringList confuseFilePath;
 
-    QStringList wordChineseTest;
-    QStringList wordEnglishTest;
+    QStringList wordChinese;
+    QStringList wordEnglish;
 
     QStringList wordChineseConfuse;
     QStringList wordEnglishConfuse;

@@ -79,7 +79,7 @@
     <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>v1.0</string>
+    <string>v2.0</string>
    </property>
   </widget>
   <widget class="QPlainTextEdit" name="plainTextEdit">
@@ -107,7 +107,7 @@ border-color: rgb(64, 66, 68);</string>
    <property name="plainText">
     <string>鹦鹉单词是一个用于记忆英语单词的软件，得名于鹦鹉学舌。
 
-软件提供了四种模式：
+软件提供了六种模式：
 
 1.自主学习模式
 
@@ -115,7 +115,11 @@ border-color: rgb(64, 66, 68);</string>
 
 3.英译中选择练习
 
-4.英译中拼写练习
+4.中译英自测练习
+
+5.英译中自测练习
+
+6.英译中拼写练习
 
 软件可以通过数据写入功能创建词库，所创建的词库不依赖于软件，而是以独立的JSON文件保存，灵活性强，易于修改。
 

@@ -55,8 +55,8 @@ void Learn::Init(QStringList learnFilePath,bool showC,bool showE,AudioSourceEnum
     ui->pushButtonPrev->setDisabled(true);
     ui->pushButtonNext->setEnabled(true);
 
-    wordChineseLearn.clear();
-    wordEnglishLearn.clear();
+    wordChinese.clear();
+    wordEnglish.clear();
 
     for(int i=0;i<learnFilePath.length();i++)
     {
@@ -72,13 +72,13 @@ void Learn::Init(QStringList learnFilePath,bool showC,bool showE,AudioSourceEnum
         for(int i=0;i<jsonArray.size();i++)
         {
             QJsonObject jsonObject=jsonArray[i].toObject();
-            wordChineseLearn.append(jsonObject.value("wordChinese").toString());
-            wordEnglishLearn.append(jsonObject.value("wordEnglish").toString());
+            wordChinese.append(jsonObject.value("wordChinese").toString());
+            wordEnglish.append(jsonObject.value("wordEnglish").toString());
         }
     }
 
     nowNum=0;
-    totalNum=wordChineseLearn.length();
+    totalNum=wordChinese.length();
 
     isShowChinese=new bool[totalNum];
     isShowEnglish=new bool[totalNum];
@@ -119,7 +119,7 @@ void Learn::ChangeShowMode()
 {
     if(isShowChinese[nowNum]==true)
     {
-        ui->labelChinese->setText(wordChineseLearn[nowNum]);
+        ui->labelChinese->setText(wordChinese[nowNum]);
         ui->pushButtonShowChinese->setText("隐藏中文释义");
     }
     else
@@ -130,7 +130,7 @@ void Learn::ChangeShowMode()
 
     if(isShowEnglish[nowNum]==true)
     {
-        ui->labelEnglish->setText(wordEnglishLearn[nowNum]);
+        ui->labelEnglish->setText(wordEnglish[nowNum]);
         ui->pushButtonShowEnglish->setText("隐藏英文拼写");
     }
     else
@@ -156,13 +156,13 @@ void Learn::on_pushButtonRead_clicked()
 {
     if(source==AudioSourceEnum::Youdao)
     {
-        player->setMedia(QUrl("http://dict.youdao.com/speech?audio="+wordEnglishLearn[nowNum]));
+        player->setMedia(QUrl("http://dict.youdao.com/speech?audio="+wordEnglish[nowNum]));
         player->play();
     }
 
     if(source==AudioSourceEnum::Machine)
     {
-        tts->say(wordEnglishLearn[nowNum]);
+        tts->say(wordEnglish[nowNum]);
     }
 }
 

@@ -17,6 +17,9 @@
 #include "LearnMenu.h"
 #include "Learn.h"
 
+#include "SelfMenu.h"
+#include "Self.h"
+
 #include "Search.h"
 
 namespace Ui
@@ -47,6 +50,9 @@ public slots:
     void ShowLearnMenu();
     void ShowLearn(QStringList learnFilePath,bool showC,bool showE,AudioSourceEnum::AudioSource source);
 
+    void ShowSelfMenu(ModeEnum::Mode mode);
+    void ShowSelf(ModeEnum::Mode mode,OrderEnum::Order order,QStringList testFilePath,QList<int> select,AudioSourceEnum::AudioSource source);
+
     void ShowSearch(QStringList offerFilePath);
 
 protected:
@@ -68,6 +74,9 @@ private:
 
     LearnMenu* learnMenu;
     Learn* learn;
+
+    SelfMenu* selfMenu;
+    Self* self;
 
     Search* search;
 

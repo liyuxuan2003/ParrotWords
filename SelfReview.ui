@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SpellReview</class>
- <widget class="QDialog" name="SpellReview">
+ <class>SelfReview</class>
+ <widget class="QDialog" name="SelfReview">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -28,94 +28,6 @@
   <property name="styleSheet">
    <string notr="true">background-color: rgb(81, 81, 81);</string>
   </property>
-  <widget class="QLabel" name="labelReview">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>281</y>
-     <width>151</width>
-     <height>61</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>是否进入复习模式？</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelTipNum">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>170</y>
-     <width>121</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>提示：20</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelRightNum">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>82</y>
-     <width>121</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>正确：12</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelTitle">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>30</y>
-     <width>121</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>测试结束！</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButtonYes">
    <property name="geometry">
     <rect>
@@ -139,26 +51,26 @@ color: rgb(255, 255, 255);</string>
     <string>是</string>
    </property>
   </widget>
-  <widget class="QLabel" name="labelMarkNum">
+  <widget class="QLabel" name="labelTitle">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>126</y>
+     <y>30</y>
      <width>121</width>
-     <height>21</height>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>等线</family>
-     <pointsize>12</pointsize>
+     <pointsize>16</pointsize>
     </font>
    </property>
    <property name="styleSheet">
     <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>标记：18</string>
+    <string>测试结束！</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButtonNo">
@@ -184,11 +96,33 @@ color: rgb(255, 255, 255);</string>
     <string>否</string>
    </property>
   </widget>
+  <widget class="QLabel" name="labelWrongNum">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>170</y>
+     <width>121</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>错误：20</string>
+   </property>
+  </widget>
   <widget class="QLabel" name="labelTotalNum">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>258</y>
+     <y>240</y>
      <width>121</width>
      <height>21</height>
     </rect>
@@ -206,11 +140,33 @@ color: rgb(255, 255, 255);</string>
     <string>总计：50</string>
    </property>
   </widget>
-  <widget class="QLabel" name="labelWrongNum">
+  <widget class="QLabel" name="labelReview">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>214</y>
+     <y>281</y>
+     <width>141</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>是否进入复习模式？</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelRightNum">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>100</y>
      <width>121</width>
      <height>21</height>
     </rect>
@@ -225,7 +181,7 @@ color: rgb(255, 255, 255);</string>
     <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>错误：20</string>
+    <string>正确：12</string>
    </property>
   </widget>
  </widget>

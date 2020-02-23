@@ -64,6 +64,16 @@ void Menu::on_pushButtonLearn_clicked()
     emit(ShowLearnMenu());
 }
 
+void Menu::on_pushButtonSelfEC_clicked()
+{
+    emit(ShowSelfMenu(ModeEnum::EC));
+}
+
+void Menu::on_pushButtonSelfCE_clicked()
+{
+    emit(ShowSelfMenu(ModeEnum::CE));
+}
+
 void Menu::on_pushButtonAbout_clicked()
 {
     about->exec();

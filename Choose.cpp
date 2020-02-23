@@ -62,8 +62,8 @@ void Choose::Init(ModeEnum::Mode mode,OrderEnum::Order order,QStringList testFil
     if(mode==ModeEnum::EC)
         ui->labelTitle->setText("英译中选择练习");
 
-    wordChineseTest.clear();
-    wordEnglishTest.clear();
+    wordChinese.clear();
+    wordEnglish.clear();
     wordChineseConfuse.clear();
     wordEnglishConfuse.clear();
 
@@ -96,8 +96,8 @@ void Choose::Init(ModeEnum::Mode mode,OrderEnum::Order order,QStringList testFil
         for(int i=0;i<jsonArray.size();i++)
         {
             QJsonObject jsonObject=jsonArray[i].toObject();
-            wordChineseTest.append(jsonObject.value("wordChinese").toString());
-            wordEnglishTest.append(jsonObject.value("wordEnglish").toString());
+            wordChinese.append(jsonObject.value("wordChinese").toString());
+            wordEnglish.append(jsonObject.value("wordEnglish").toString());
         }
     }
 
@@ -123,7 +123,7 @@ void Choose::Init(ModeEnum::Mode mode,OrderEnum::Order order,QStringList testFil
     nowNum=0;
     if(review.length()==0)
     {
-        totalNum=wordChineseTest.length();
+        totalNum=wordChinese.length();
         testOrder=new int[totalNum];
         for(int i=0;i<totalNum;i++)
             testOrder[i]=i;
@@ -184,7 +184,7 @@ void Choose::GeneratePage()
         {
             isSame=false;
             wa=qrand()%wordChineseConfuse.length();
-            if(wordChineseConfuse[wa]==wordChineseTest[testOrder[nowNum]] && wordEnglishConfuse[wa]==wordEnglishTest[testOrder[nowNum]])
+            if(wordChineseConfuse[wa]==wordChinese[testOrder[nowNum]] && wordEnglishConfuse[wa]==wordEnglish[testOrder[nowNum]])
                 isSame=true;
             for (int j=0;j<i;j++)
             {
@@ -200,28 +200,28 @@ void Choose::GeneratePage()
 
     if(mode==ModeEnum::CE)
     {
-        ui->labelQuestion->setText(wordChineseTest[testOrder[nowNum]]);
+        ui->labelQuestion->setText(wordChinese[testOrder[nowNum]]);
         QString optstr[4];
         for(int i=0;i<4;i++)
             optstr[i]=wordEnglishConfuse[wrongAns[i]];
         nowRightOption=qrand()%4;
-        optstr[nowRightOption]=wordEnglishTest[testOrder[nowNum]];
-        wordCardChinese[nowRightOption]=wordChineseTest[testOrder[nowNum]];
-        wordCardEnglish[nowRightOption]=wordEnglishTest[testOrder[nowNum]];
+        optstr[nowRightOption]=wordEnglish[testOrder[nowNum]];
+        wordCardChinese[nowRightOption]=wordChinese[testOrder[nowNum]];
+        wordCardEnglish[nowRightOption]=wordEnglish[testOrder[nowNum]];
         for(int i=0;i<4;i++)
             radioButtons[i]->setText(optstr[i]);
     }
 
     if(mode==ModeEnum::EC)
     {
-        ui->labelQuestion->setText(wordEnglishTest[testOrder[nowNum]]);
+        ui->labelQuestion->setText(wordEnglish[testOrder[nowNum]]);
         QString optstr[4];
         for(int i=0;i<4;i++)
             optstr[i]=wordChineseConfuse[wrongAns[i]];
         nowRightOption=qrand()%4;
-        optstr[nowRightOption]=wordChineseTest[testOrder[nowNum]];
-        wordCardChinese[nowRightOption]=wordChineseTest[testOrder[nowNum]];
-        wordCardEnglish[nowRightOption]=wordEnglishTest[testOrder[nowNum]];
+        optstr[nowRightOption]=wordChinese[testOrder[nowNum]];
+        wordCardChinese[nowRightOption]=wordChinese[testOrder[nowNum]];
+        wordCardEnglish[nowRightOption]=wordEnglish[testOrder[nowNum]];
         for(int i=0;i<4;i++)
             radioButtons[i]->setText(optstr[i]);
     }

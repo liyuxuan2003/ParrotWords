@@ -1,7 +1,5 @@
-#ifndef SPELL_H
-#define SPELL_H
-
-#include <algorithm>
+#ifndef SELF_H
+#define SELF_H
 
 #include <QFrame>
 #include <QTime>
@@ -16,25 +14,25 @@
 #include <LiLibrary/LiEasyLayout.h>
 #include <LiLibrary/LiFixedToLayout.h>
 
-#include "SpellReview.h"
-#include "SpellHelp.h"
-
 #include "GlobalEnum.h"
+
+#include "SelfReview.h"
+#include "SelfHelp.h"
 
 namespace Ui
 {
-    class Spell;
+    class Self;
 }
 
-class Spell : public QFrame
+class Self : public QFrame
 {
     Q_OBJECT
 
 public:
-    explicit Spell(QWidget *parent = nullptr);
-    ~Spell();
+    explicit Self(QWidget *parent = nullptr);
+    ~Self();
 
-    void Init(OrderEnum::Order order,QStringList testFilePath,QList<int> review,AudioSourceEnum::AudioSource source);
+    void Init(ModeEnum::Mode mode,OrderEnum::Order order,QStringList testFilePath,QList<int> review,AudioSourceEnum::AudioSource source);
 
 protected:
     virtual void resizeEvent(QResizeEvent * event);
@@ -44,33 +42,27 @@ protected:
 private slots:
     void on_pushButtonExit_clicked();
 
-    void on_pushButtonNext_clicked();
+    void on_pushButtonShowAns_clicked();
 
-    void on_pushButtonTip1_clicked();
+    void on_pushButtonRight_clicked();
 
-    void on_pushButtonTip2_clicked();
+    void on_pushButtonWrong_clicked();
 
-    void on_pushButtonTipR_clicked();
-
-    void on_pushButtonTipA_clicked();
-
-    void on_pushButtonTipHide_clicked();
-
-    void on_pushButtonMark_clicked();
+    void on_pushButtonRead_clicked();
 
     void on_pushButtonHelp_clicked();
 
     void on_pushButtonSearch_clicked();
 
 private:
-    Ui::Spell *ui;
+    Ui::Self *ui;
 
     LiEasyLayout* l1;
     LiFixedToLayout* l2;
 
-    SpellReview* spellReview;
+    SelfReview* selfReview;
 
-    SpellHelp* spellHelp;
+    SelfHelp* selfHelp;
 
     OrderEnum::Order order;
 
@@ -84,19 +76,19 @@ private:
 
     AudioSourceEnum::AudioSource source;
 
+    ModeEnum::Mode mode;
+
     QList<int> toReview;
 
     int* record;
     int* testOrder;
 
-    bool isMarkClick;
-
     int nowNum;
     int totalNum;
 
-    QString nowEnterWord;
-
     void GeneratePage();
+
+    void NextPage();
 
 signals:
     void ShowMenu();
@@ -104,4 +96,4 @@ signals:
     void ShowSearch(QStringList offerFilePath);
 };
 
-#endif // SPELL_H
+#endif // SELF_H

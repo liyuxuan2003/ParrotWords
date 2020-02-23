@@ -36,6 +36,10 @@ private slots:
 
     void on_pushButtonLearn_clicked();
 
+    void on_pushButtonSelfEC_clicked();
+
+    void on_pushButtonSelfCE_clicked();
+
     void on_pushButtonAbout_clicked();
 
     void on_pushButtonExit_clicked();
@@ -54,6 +58,7 @@ private:
 signals:
     void ShowDataInputMenu();
     void ShowChooseMenu(ModeEnum::Mode mode);
+    void ShowSelfMenu(ModeEnum::Mode mode);
     void ShowSpellMenu();
     void ShowLearnMenu();
     void ShowSearch(QStringList offerFilePath);

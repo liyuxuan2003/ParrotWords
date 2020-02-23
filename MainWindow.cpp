@@ -34,6 +34,12 @@ MainWindow::MainWindow(QWidget *parent) :
     learn=new Learn(this);
     learn->move(0,0);
 
+    selfMenu=new SelfMenu(this);
+    selfMenu->move(0,0);
+
+    self=new Self(this);
+    self->move(0,0);
+
     HideAllFrame();
     menu->show();
 
@@ -108,6 +114,23 @@ MainWindow::MainWindow(QWidget *parent) :
         learn,SIGNAL(ShowMenu()),
         this,SLOT(ShowMenu()));
 
+    //Self
+    connect(
+        menu,SIGNAL(ShowSelfMenu(ModeEnum::Mode)),
+        this,SLOT(ShowSelfMenu(ModeEnum::Mode)));
+
+    connect(
+        selfMenu,SIGNAL(ShowMenu()),
+        this,SLOT(ShowMenu()));
+
+    connect(
+        selfMenu,SIGNAL(ShowSelf(ModeEnum::Mode,OrderEnum::Order,QStringList,QList<int>,AudioSourceEnum::AudioSource)),
+        this,SLOT(ShowSelf(ModeEnum::Mode,OrderEnum::Order,QStringList,QList<int>,AudioSourceEnum::AudioSource)));
+
+    connect(
+        self,SIGNAL(ShowMenu()),
+        this,SLOT(ShowMenu()));
+
     //Search
     connect(
         menu,SIGNAL(ShowSearch(QStringList)),
@@ -123,6 +146,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(
         learn,SIGNAL(ShowSearch(QStringList)),
+        this,SLOT(ShowSearch(QStringList)));
+
+    connect(
+        self,SIGNAL(ShowSearch(QStringList)),
         this,SLOT(ShowSearch(QStringList)));
 }
 
@@ -146,6 +173,9 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 
     learnMenu->resize(width(),height());
     learn->resize(width(),height());
+
+    selfMenu->resize(width(),height());
+    self->resize(width(),height());
 }
 
 void MainWindow::HideAllFrame()
@@ -163,6 +193,9 @@ void MainWindow::HideAllFrame()
 
     learnMenu->hide();
     learn->hide();
+
+    selfMenu->hide();
+    self->hide();
 }
 
 void MainWindow::ShowMenu()
@@ -225,6 +258,20 @@ void MainWindow::ShowLearn(QStringList learnFilePath,bool showC,bool showE,Audio
     HideAllFrame();
     learn->show();
     learn->Init(learnFilePath,showC,showE,source);
+}
+
+void MainWindow::ShowSelfMenu(ModeEnum::Mode mode)
+{
+    HideAllFrame();
+    selfMenu->show();
+    selfMenu->Init(mode);
+}
+
+void MainWindow::ShowSelf(ModeEnum::Mode mode,OrderEnum::Order order,QStringList testFilePath,QList<int> select,AudioSourceEnum::AudioSource source)
+{
+    HideAllFrame();
+    self->show();
+    self->Init(mode,order,testFilePath,select,source);
 }
 
 void MainWindow::ShowSearch(QStringList offerFilePath)
