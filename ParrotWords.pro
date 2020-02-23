@@ -9,6 +9,7 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 QT += texttospeech
+QT += multimediawidgets
 
 TARGET = ParrotWords
 TEMPLATE = app
@@ -47,7 +48,9 @@ SOURCES += \
     ChooseHelp.cpp \
     LearnHelp.cpp \
     SpellHelp.cpp \
-    About.cpp
+    About.cpp \
+    Search.cpp \
+    WordCard.cpp
 
 RC_FILE += Version.rc
 
@@ -72,7 +75,10 @@ HEADERS += \
     LearnHelp.h \
     SpellHelp.h \
     About.h \
-    Version.rc
+    Version.rc \
+    GlobalEnum.h \
+    Search.h \
+    WordCard.h
 
 FORMS += \
         MainWindow.ui \
@@ -90,7 +96,9 @@ FORMS += \
     ChooseHelp.ui \
     LearnHelp.ui \
     SpellHelp.ui \
-    About.ui
+    About.ui \
+    Search.ui \
+    WordCard.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

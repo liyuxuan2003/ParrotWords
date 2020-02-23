@@ -13,16 +13,17 @@ Choose::Choose(QWidget *parent) :
     l1->AddUnit(ui->labelTitle);
     l1->AddUnit(ui->labelLocation);
     l1->AddUnit(ui->labelQuestion);
-    l1->AddUnit(ui->radioButtonA);
-    l1->AddUnit(ui->radioButtonB);
-    l1->AddUnit(ui->radioButtonC);
-    l1->AddUnit(ui->radioButtonD);
+    l1->AddUnit(new QWidget*[2]{ui->pushButtonA,ui->radioButtonA},2);
+    l1->AddUnit(new QWidget*[2]{ui->pushButtonB,ui->radioButtonB},2);
+    l1->AddUnit(new QWidget*[2]{ui->pushButtonC,ui->radioButtonC},2);
+    l1->AddUnit(new QWidget*[2]{ui->pushButtonD,ui->radioButtonD},2);
     l1->AddUnit(new QWidget*[3]{ui->pushButtonNext,ui->pushButtonMark,ui->labelMark},3);
 
     l1->LayoutConfigDone();
 
     l2->AddUnit(ui->pushButtonExit,width(),height(),LiFixedCorner::RightBottom);
     l2->AddUnit(ui->pushButtonHelp,width(),height(),LiFixedCorner::RightTop);
+    l2->AddUnit(ui->pushButtonSearch,width(),height(),LiFixedCorner::RightTop);
 
     radioButtons[0]=ui->radioButtonA;
     radioButtons[1]=ui->radioButtonB;
@@ -47,7 +48,7 @@ void Choose::resizeEvent(QResizeEvent *event)
     l2->ResizeWithFixedToLayout(width(),height());
 }
 
-void Choose::Init(ChooseMode::Mode mode,ChooseOrder::Order order,QStringList testFilePath,QStringList confuseFilePath,QList<int> review)
+void Choose::Init(ModeEnum::Mode mode,OrderEnum::Order order,QStringList testFilePath,QStringList confuseFilePath,QList<int> review)
 {
     this->mode=mode;
     this->order=order;
@@ -56,9 +57,9 @@ void Choose::Init(ChooseMode::Mode mode,ChooseOrder::Order order,QStringList tes
 
     toReview.clear();
 
-    if(mode==ChooseMode::CE)
+    if(mode==ModeEnum::CE)
         ui->labelTitle->setText("中译英选择练习");
-    if(mode==ChooseMode::EC)
+    if(mode==ModeEnum::EC)
         ui->labelTitle->setText("英译中选择练习");
 
     wordChineseTest.clear();
@@ -138,7 +139,7 @@ void Choose::Init(ChooseMode::Mode mode,ChooseOrder::Order order,QStringList tes
 
     QTime time=QTime::currentTime();
     qsrand(time.msec()+time.second()*1000);
-    if(order==ChooseOrder::Random)
+    if(order==OrderEnum::Random)
     {
         for(int i=0;i<4*totalNum;i++)
         {
@@ -170,6 +171,9 @@ void Choose::GeneratePage()
     for(int i=0;i<4;i++)
         radioButtons[i]->setAutoExclusive(true);
 
+    wordCardChinese.clear();
+    wordCardEnglish.clear();
+
     QList<int> wrongAns;
     wrongAns.clear();
     for(int i=0;i<4;i++)
@@ -190,9 +194,11 @@ void Choose::GeneratePage()
         }
         while(isSame==true);
         wrongAns.append(wa);
+        wordCardChinese.append(wordChineseConfuse[wa]);
+        wordCardEnglish.append(wordEnglishConfuse[wa]);
     }
 
-    if(mode==ChooseMode::CE)
+    if(mode==ModeEnum::CE)
     {
         ui->labelQuestion->setText(wordChineseTest[testOrder[nowNum]]);
         QString optstr[4];
@@ -200,11 +206,13 @@ void Choose::GeneratePage()
             optstr[i]=wordEnglishConfuse[wrongAns[i]];
         nowRightOption=qrand()%4;
         optstr[nowRightOption]=wordEnglishTest[testOrder[nowNum]];
+        wordCardChinese[nowRightOption]=wordChineseTest[testOrder[nowNum]];
+        wordCardEnglish[nowRightOption]=wordEnglishTest[testOrder[nowNum]];
         for(int i=0;i<4;i++)
             radioButtons[i]->setText(optstr[i]);
     }
 
-    if(mode==ChooseMode::EC)
+    if(mode==ModeEnum::EC)
     {
         ui->labelQuestion->setText(wordEnglishTest[testOrder[nowNum]]);
         QString optstr[4];
@@ -212,6 +220,8 @@ void Choose::GeneratePage()
             optstr[i]=wordChineseConfuse[wrongAns[i]];
         nowRightOption=qrand()%4;
         optstr[nowRightOption]=wordChineseTest[testOrder[nowNum]];
+        wordCardChinese[nowRightOption]=wordChineseTest[testOrder[nowNum]];
+        wordCardEnglish[nowRightOption]=wordEnglishTest[testOrder[nowNum]];
         for(int i=0;i<4;i++)
             radioButtons[i]->setText(optstr[i]);
     }
@@ -261,8 +271,9 @@ void Choose::on_pushButtonNext_clicked()
         else
         {
             int rightNum=0;
-            int wrongNum=0;
             int markNum=0;
+            int tipNum=0;
+            int wrongNum=0;
             for(int i=0;i<totalNum;i++)
             {
                 if(record[i]==0)
@@ -272,7 +283,7 @@ void Choose::on_pushButtonNext_clicked()
                 if(record[i]==2)
                     wrongNum++;
             }
-            chooseReview->Init(rightNum,wrongNum,markNum,totalNum);
+            chooseReview->Init(rightNum,markNum,wrongNum,totalNum);
             chooseReview->exec();
             if(chooseReview->GetUserAns()==true)
             {
@@ -317,4 +328,37 @@ void Choose::on_pushButtonMark_clicked()
 void Choose::on_pushButtonHelp_clicked()
 {
     chooseHelp->exec();
+}
+
+void Choose::on_pushButtonSearch_clicked()
+{
+    ShowSearch(testFilePath);
+}
+
+void Choose::on_pushButtonA_clicked()
+{
+    WordCard* wordCard=new WordCard();
+    wordCard->Init(wordCardChinese[0],wordCardEnglish[0]);
+    wordCard->show();
+}
+
+void Choose::on_pushButtonB_clicked()
+{
+    WordCard* wordCard=new WordCard();
+    wordCard->Init(wordCardChinese[1],wordCardEnglish[1]);
+    wordCard->show();
+}
+
+void Choose::on_pushButtonC_clicked()
+{
+    WordCard* wordCard=new WordCard();
+    wordCard->Init(wordCardChinese[2],wordCardEnglish[2]);
+    wordCard->show();
+}
+
+void Choose::on_pushButtonD_clicked()
+{
+    WordCard* wordCard=new WordCard();
+    wordCard->Init(wordCardChinese[3],wordCardEnglish[3]);
+    wordCard->show();
 }

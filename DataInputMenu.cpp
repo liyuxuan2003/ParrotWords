@@ -37,7 +37,7 @@ void DataInputMenu::Init()
 {
     path="D:/";
     ui->labelPathSet->setText(path);
-    ui->lineEditName->setText("WordsBase1");
+    ui->lineEditName->setText("");
     ui->spinBoxNum->setValue(50);
     ui->labelFailed->hide();
 }

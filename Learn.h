@@ -5,6 +5,7 @@
 #include <QTime>
 #include <QKeyEvent>
 #include <QTextToSpeech>
+#include <QMediaPlayer>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -14,6 +15,7 @@
 #include <LiLibrary/LiFixedToLayout.h>
 
 #include "LearnHelp.h"
+#include "GlobalEnum.h"
 
 namespace Ui
 {
@@ -28,7 +30,7 @@ public:
     explicit Learn(QWidget *parent = nullptr);
     ~Learn();
 
-    void Init(QStringList learnFilePath,bool showC,bool showE);
+    void Init(QStringList learnFilePath,bool showC,bool showE,AudioSourceEnum::AudioSource source);
 
 protected:
     virtual void resizeEvent(QResizeEvent * event);
@@ -49,6 +51,9 @@ private:
     QStringList wordEnglishLearn;
 
     QTextToSpeech* tts;
+    QMediaPlayer* player;
+
+    AudioSourceEnum::AudioSource source;
 
     int nowNum;
     int totalNum;
@@ -63,6 +68,8 @@ private:
 signals:
     void ShowMenu();
 
+    void ShowSearch(QStringList offerFilePath);
+
 private slots:
     void on_pushButtonShowChinese_clicked();
     void on_pushButtonShowEnglish_clicked();
@@ -71,6 +78,7 @@ private slots:
     void on_pushButtonNext_clicked();
     void on_pushButtonExit_clicked();
     void on_pushButtonHelp_clicked();
+    void on_pushButtonSearch_clicked();
 };
 
 #endif // LEARN_H

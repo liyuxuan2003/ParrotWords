@@ -5,8 +5,9 @@
 #include <LiLibrary/LiEasyLayout.h>
 #include <LiLibrary/LiFixedToLayout.h>
 
-#include "ChooseMenu.h"
 #include "About.h"
+
+#include "GlobalEnum.h"
 
 namespace Ui
 {
@@ -39,6 +40,8 @@ private slots:
 
     void on_pushButtonExit_clicked();
 
+    void on_pushButtonSearch_clicked();
+
 private:
     Ui::Menu* ui;
 
@@ -50,9 +53,10 @@ private:
 
 signals:
     void ShowDataInputMenu();
-    void ShowChooseMenu(ChooseMode::Mode mode);
+    void ShowChooseMenu(ModeEnum::Mode mode);
     void ShowSpellMenu();
     void ShowLearnMenu();
+    void ShowSearch(QStringList offerFilePath);
 };
 
 #endif // MENU_H

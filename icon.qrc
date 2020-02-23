@@ -1,6 +1,8 @@
 <RCC>
     <qresource prefix="/PNG">
         <file>Icon/ParrotWords.png</file>
+        <file>Icon/Help.png</file>
+        <file>Icon/Search.png</file>
     </qresource>
     <qresource prefix="/ICO">
         <file>Icon/ParrotWords-16.ico</file>

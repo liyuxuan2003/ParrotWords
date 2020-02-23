@@ -20,7 +20,7 @@
    <property name="geometry">
     <rect>
      <x>320</x>
-     <y>160</y>
+     <y>140</y>
      <width>551</width>
      <height>41</height>
     </rect>
@@ -42,7 +42,7 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>510</y>
+     <y>550</y>
      <width>161</width>
      <height>51</height>
     </rect>
@@ -65,7 +65,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>580</y>
+     <y>620</y>
      <width>441</width>
      <height>31</height>
     </rect>
@@ -87,7 +87,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>160</y>
+     <y>140</y>
      <width>121</width>
      <height>41</height>
     </rect>
@@ -154,7 +154,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>160</y>
+     <y>140</y>
      <width>121</width>
      <height>41</height>
     </rect>
@@ -177,7 +177,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>280</y>
+     <y>350</y>
      <width>131</width>
      <height>41</height>
     </rect>
@@ -199,7 +199,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>200</x>
-     <y>285</y>
+     <y>355</y>
      <width>221</width>
      <height>31</height>
     </rect>
@@ -224,7 +224,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>200</x>
-     <y>340</y>
+     <y>410</y>
      <width>221</width>
      <height>31</height>
     </rect>
@@ -249,7 +249,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>200</x>
-     <y>400</y>
+     <y>470</y>
      <width>221</width>
      <height>31</height>
     </rect>
@@ -269,6 +269,58 @@ color: rgb(255, 255, 255);</string>
    <property name="text">
     <string>仅显示英文</string>
    </property>
+  </widget>
+  <widget class="QLabel" name="labelSource">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>250</y>
+     <width>121</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>单词语音源：</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBoxSource">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>250</y>
+     <width>251</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(100, 100, 100);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <item>
+    <property name="text">
+     <string>有道词典发音接口（需要连网）</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>本地机器语音合成（无需连网）</string>
+    </property>
+   </item>
   </widget>
  </widget>
  <resources/>

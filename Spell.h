@@ -7,6 +7,7 @@
 #include <QTime>
 #include <QKeyEvent>
 #include <QTextToSpeech>
+#include <QMediaPlayer>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -15,9 +16,10 @@
 #include <LiLibrary/LiEasyLayout.h>
 #include <LiLibrary/LiFixedToLayout.h>
 
-#include "SpellMenu.h"
 #include "SpellReview.h"
 #include "SpellHelp.h"
+
+#include "GlobalEnum.h"
 
 namespace Ui
 {
@@ -32,7 +34,7 @@ public:
     explicit Spell(QWidget *parent = nullptr);
     ~Spell();
 
-    void Init(SpellOrder::Order order,QStringList testFilePath,QList<int> review);
+    void Init(OrderEnum::Order order,QStringList testFilePath,QList<int> review,AudioSourceEnum::AudioSource source);
 
 protected:
     virtual void resizeEvent(QResizeEvent * event);
@@ -58,6 +60,8 @@ private slots:
 
     void on_pushButtonHelp_clicked();
 
+    void on_pushButtonSearch_clicked();
+
 private:
     Ui::Spell *ui;
 
@@ -68,7 +72,7 @@ private:
 
     SpellHelp* spellHelp;
 
-    SpellOrder::Order order;
+    OrderEnum::Order order;
 
     QStringList testFilePath;
 
@@ -76,6 +80,9 @@ private:
     QStringList wordEnglishTest;
 
     QTextToSpeech* tts;
+    QMediaPlayer* player;
+
+    AudioSourceEnum::AudioSource source;
 
     QList<int> toReview;
 
@@ -93,6 +100,8 @@ private:
 
 signals:
     void ShowMenu();
+
+    void ShowSearch(QStringList offerFilePath);
 };
 
 #endif // SPELL_H

@@ -17,6 +17,8 @@
 #include "LearnMenu.h"
 #include "Learn.h"
 
+#include "Search.h"
+
 namespace Ui
 {
     class MainWindow;
@@ -36,14 +38,16 @@ public slots:
     void ShowDataInputMenu();
     void ShowDataInput(QString path,QString name,int num);
 
-    void ShowChooseMenu(ChooseMode::Mode mode);
-    void ShowChoose(ChooseMode::Mode mode,ChooseOrder::Order order,QStringList testFilePath,QStringList confuseFilePath,QList<int> select);
+    void ShowChooseMenu(ModeEnum::Mode mode);
+    void ShowChoose(ModeEnum::Mode mode,OrderEnum::Order order,QStringList testFilePath,QStringList confuseFilePath,QList<int> select);
 
     void ShowSpellMenu();
-    void ShowSpell(SpellOrder::Order order,QStringList testFilePath,QList<int> select);
+    void ShowSpell(OrderEnum::Order order,QStringList testFilePath,QList<int> select,AudioSourceEnum::AudioSource source);
 
     void ShowLearnMenu();
-    void ShowLearn(QStringList learnFilePath,bool showC,bool showE);
+    void ShowLearn(QStringList learnFilePath,bool showC,bool showE,AudioSourceEnum::AudioSource source);
+
+    void ShowSearch(QStringList offerFilePath);
 
 protected:
     virtual void resizeEvent(QResizeEvent * event);
@@ -64,6 +68,8 @@ private:
 
     LearnMenu* learnMenu;
     Learn* learn;
+
+    Search* search;
 
     void HideAllFrame();
 };

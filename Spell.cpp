@@ -22,6 +22,7 @@ Spell::Spell(QWidget *parent) :
 
     l2->AddUnit(ui->pushButtonExit,width(),height(),LiFixedCorner::RightBottom);
     l2->AddUnit(ui->pushButtonHelp,width(),height(),LiFixedCorner::RightTop);
+    l2->AddUnit(ui->pushButtonSearch,width(),height(),LiFixedCorner::RightTop);
 
     spellReview=new SpellReview();
     spellReview->hide();
@@ -34,6 +35,9 @@ Spell::Spell(QWidget *parent) :
     tts->setRate(0.0);
     tts->setPitch(1.0);
     tts->setVolume(1.0);
+
+    player = new QMediaPlayer(this);
+    player->setVolume(100);
 }
 
 Spell::~Spell()
@@ -52,12 +56,14 @@ void Spell::on_pushButtonExit_clicked()
     emit(ShowMenu());
 }
 
-void Spell::Init(SpellOrder::Order order,QStringList testFilePath,QList<int> review)
+void Spell::Init(OrderEnum::Order order,QStringList testFilePath,QList<int> review,AudioSourceEnum::AudioSource source)
 {
     ui->labelTitle->setText("中译英拼写练习");
 
     this->testFilePath=testFilePath;
     this->order=order;
+
+    this->source=source;
 
     wordChineseTest.clear();
     wordEnglishTest.clear();
@@ -101,7 +107,7 @@ void Spell::Init(SpellOrder::Order order,QStringList testFilePath,QList<int> rev
 
     QTime time=QTime::currentTime();
     qsrand(time.msec()+time.second()*1000);
-    if(order==SpellOrder::Random)
+    if(order==OrderEnum::Random)
     {
         for(int i=0;i<4*totalNum;i++)
         {
@@ -231,7 +237,7 @@ void Spell::on_pushButtonNext_clicked()
         spellReview->exec();
         if(spellReview->GetUserAns()==true)
         {
-            Init(order,testFilePath,toReview);
+            Init(order,testFilePath,toReview,source);
             return;
         }
         else
@@ -265,7 +271,17 @@ void Spell::on_pushButtonTip2_clicked()
 
 void Spell::on_pushButtonTipR_clicked()
 {
-    tts->say(wordEnglishTest[testOrder[nowNum]]);
+    if(source==AudioSourceEnum::Youdao)
+    {
+        player->setMedia(QUrl("http://dict.youdao.com/speech?audio="+wordEnglishTest[nowNum]));
+        player->play();
+    }
+
+    if(source==AudioSourceEnum::Machine)
+    {
+        tts->say(wordEnglishTest[nowNum]);
+    }
+
     if(nowEnterWord!=wordEnglishTest[testOrder[nowNum]])
         record[nowNum]=std::max(record[nowNum],2);
 }
@@ -294,4 +310,9 @@ void Spell::on_pushButtonMark_clicked()
 void Spell::on_pushButtonHelp_clicked()
 {
     spellHelp->exec();
+}
+
+void Spell::on_pushButtonSearch_clicked()
+{
+    ShowSearch(testFilePath);
 }

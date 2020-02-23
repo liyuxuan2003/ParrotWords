@@ -46,7 +46,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>200</y>
+     <y>190</y>
      <width>521</width>
      <height>41</height>
     </rect>
@@ -140,8 +140,8 @@ color: rgb(255, 255, 255);</string>
   <widget class="QRadioButton" name="radioButtonA">
    <property name="geometry">
     <rect>
-     <x>52</x>
-     <y>280</y>
+     <x>190</x>
+     <y>270</y>
      <width>661</width>
      <height>31</height>
     </rect>
@@ -159,14 +159,14 @@ color: rgb(255, 255, 255);</string>
     <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>A.  absolute</string>
+    <string>absolute</string>
    </property>
   </widget>
   <widget class="QRadioButton" name="radioButtonB">
    <property name="geometry">
     <rect>
-     <x>52</x>
-     <y>360</y>
+     <x>190</x>
+     <y>350</y>
      <width>661</width>
      <height>31</height>
     </rect>
@@ -184,14 +184,14 @@ color: rgb(255, 255, 255);</string>
     <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>B.  absolute</string>
+    <string>absolute</string>
    </property>
   </widget>
   <widget class="QRadioButton" name="radioButtonC">
    <property name="geometry">
     <rect>
-     <x>52</x>
-     <y>440</y>
+     <x>190</x>
+     <y>430</y>
      <width>661</width>
      <height>31</height>
     </rect>
@@ -209,14 +209,14 @@ color: rgb(255, 255, 255);</string>
     <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>C.  absolute</string>
+    <string>absolute</string>
    </property>
   </widget>
   <widget class="QRadioButton" name="radioButtonD">
    <property name="geometry">
     <rect>
-     <x>52</x>
-     <y>520</y>
+     <x>190</x>
+     <y>510</y>
      <width>661</width>
      <height>31</height>
     </rect>
@@ -234,7 +234,7 @@ color: rgb(255, 255, 255);</string>
     <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>D.  absolute</string>
+    <string>absolute</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButtonMark">
@@ -306,10 +306,138 @@ color: rgb(255, 255, 255);</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
+    <string notr="true">image: url(:/PNG/Icon/Help.png);</string>
    </property>
    <property name="text">
-    <string>?</string>
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonSearch">
+   <property name="geometry">
+    <rect>
+     <x>1140</x>
+     <y>70</y>
+     <width>60</width>
+     <height>60</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>30</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/PNG/Icon/Search.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonA">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>265</y>
+     <width>121</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(100, 100, 100);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>显示单词卡片</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonB">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>345</y>
+     <width>121</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(100, 100, 100);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>显示单词卡片</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonC">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>425</y>
+     <width>121</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(100, 100, 100);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>显示单词卡片</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonD">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>505</y>
+     <width>121</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(100, 100, 100);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>显示单词卡片</string>
    </property>
   </widget>
  </widget>

@@ -13,6 +13,8 @@
 #include <LiLibrary/LiFixedToLayout.h>
 #include <LiLibrary/LiFileName.h>
 
+#include "GlobalEnum.h"
+
 namespace Ui
 {
     class LearnMenu;
@@ -42,9 +44,11 @@ private:
     bool showC;
     bool showE;
 
+    AudioSourceEnum::AudioSource source;
+
 signals:
     void ShowMenu();
-    void ShowLearn(QStringList learnFilePath,bool showC,bool showE);
+    void ShowLearn(QStringList learnFilePath,bool showC,bool showE,AudioSourceEnum::AudioSource source);
 
 private slots:
     void on_pushButtonTest_clicked();
@@ -53,6 +57,7 @@ private slots:
     void on_radioButtonCE_toggled(bool checked);
     void on_radioButtonC_toggled(bool checked);
     void on_radioButtonE_toggled(bool checked);
+    void on_comboBoxSource_activated(int index);
 };
 
 #endif // LEARNMENU_H

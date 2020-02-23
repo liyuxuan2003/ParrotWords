@@ -12,11 +12,10 @@ Menu::Menu(QWidget *parent) :
     l2=new LiFixedToLayout();
 
     l1->AddUnit(ui->labelTitle);
-    l1->AddUnit(ui->pushButtonLearn);
-    l1->AddUnit(ui->pushButtonChooseEC);
-    l1->AddUnit(ui->pushButtonChooseCE);
-    l1->AddUnit(ui->pushButtonSpellCE);
-    l1->AddUnit(ui->pushButtonDataInput);
+    l1->AddUnit(new QWidget*[2]{ui->pushButtonLearn,ui->pushButtonSearch},2);
+    l1->AddUnit(new QWidget*[2]{ui->pushButtonChooseEC,ui->pushButtonSelfEC},2);
+    l1->AddUnit(new QWidget*[2]{ui->pushButtonChooseCE,ui->pushButtonSelfCE},2);
+    l1->AddUnit(new QWidget*[2]{ui->pushButtonSpellCE,ui->pushButtonDataInput},2);
     l1->AddUnit(new QWidget*[2]{ui->labelExtraInfo1,ui->labelExtraInfo2},2);
 
     l1->LayoutConfigDone();
@@ -47,12 +46,12 @@ void Menu::on_pushButtonDataInput_clicked()
 
 void Menu::on_pushButtonChooseEC_clicked()
 {
-    emit(ShowChooseMenu(ChooseMode::EC));
+    emit(ShowChooseMenu(ModeEnum::EC));
 }
 
 void Menu::on_pushButtonChooseCE_clicked()
 {
-    emit(ShowChooseMenu(ChooseMode::CE));
+    emit(ShowChooseMenu(ModeEnum::CE));
 }
 
 void Menu::on_pushButtonSpellCE_clicked()
@@ -73,4 +72,9 @@ void Menu::on_pushButtonAbout_clicked()
 void Menu::on_pushButtonExit_clicked()
 {
     QApplication::exit();
+}
+
+void Menu::on_pushButtonSearch_clicked()
+{
+    ShowSearch(QStringList());
 }

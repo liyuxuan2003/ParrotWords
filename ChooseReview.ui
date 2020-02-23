@@ -28,116 +28,6 @@
   <property name="styleSheet">
    <string notr="true">background-color: rgb(81, 81, 81);</string>
   </property>
-  <widget class="QLabel" name="labelTitle">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>30</y>
-     <width>121</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>测试结束！</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelRightNum">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>90</y>
-     <width>121</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>正确：12</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelMarkNum">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>140</y>
-     <width>121</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>标记：18</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelTotalNum">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>240</y>
-     <width>121</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>总计：52</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelReview">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>281</y>
-     <width>271</width>
-     <height>61</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>是否进入复习模式？</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButtonYes">
    <property name="geometry">
     <rect>
@@ -184,13 +74,35 @@ color: rgb(255, 255, 255);</string>
     <string>否</string>
    </property>
   </widget>
-  <widget class="QLabel" name="labelWrongNum">
+  <widget class="QLabel" name="labelTitle">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>190</y>
+     <y>30</y>
      <width>121</width>
-     <height>31</height>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>测试结束！</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelMarkNum">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>140</y>
+     <width>121</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="font">
@@ -203,7 +115,95 @@ color: rgb(255, 255, 255);</string>
     <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>错误：22</string>
+    <string>标记：18</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelWrongNum">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>190</y>
+     <width>121</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>错误：20</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelRightNum">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>90</y>
+     <width>121</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>正确：12</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelTotalNum">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>240</y>
+     <width>121</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>总计：50</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelReview">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>281</y>
+     <width>141</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>是否进入复习模式？</string>
    </property>
   </widget>
  </widget>

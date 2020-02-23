@@ -38,34 +38,11 @@
     <string>鹦鹉单词 / Parrot Words</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButtonDataInput">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>540</y>
-     <width>191</width>
-     <height>61</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>等线</family>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(100, 100, 100);
-color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>数据写入</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButtonChooseEC">
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>210</y>
+     <y>250</y>
      <width>191</width>
      <height>61</height>
     </rect>
@@ -88,7 +65,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>320</y>
+     <y>390</y>
      <width>191</width>
      <height>61</height>
     </rect>
@@ -111,7 +88,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>430</y>
+     <y>530</y>
      <width>191</width>
      <height>61</height>
     </rect>
@@ -134,7 +111,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>110</y>
+     <y>120</y>
      <width>191</width>
      <height>61</height>
     </rect>
@@ -257,6 +234,98 @@ color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>Copyright © 2020 Li Yuxuan   All Rights Reserved.</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonDataInput">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>530</y>
+     <width>191</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(100, 100, 100);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>创建单词库</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonSearch">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>120</y>
+     <width>191</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(100, 100, 100);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>单词搜索窗口</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonSelfCE">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>390</y>
+     <width>191</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(100, 100, 100);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>中译英自测练习</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonSelfEC">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>250</y>
+     <width>191</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(100, 100, 100);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>英译中自测练习</string>
    </property>
   </widget>
  </widget>

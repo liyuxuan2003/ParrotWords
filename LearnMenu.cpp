@@ -12,6 +12,7 @@ LearnMenu::LearnMenu(QWidget *parent) :
 
     l1->AddUnit(ui->labelTitle);
     l1->AddUnit(new QWidget*[3]{ui->labelLearn,ui->pushButtonTest,ui->labelLearnInfo},3);
+    l1->AddUnit(new QWidget*[2]{ui->labelSource,ui->comboBoxSource},2);
     l1->AddUnit(new QWidget*[4]{ui->labelSetting,ui->radioButtonCE,ui->radioButtonC,ui->radioButtonE},4);
     l1->AddUnit(ui->pushButtonStart);
     l1->AddUnit(ui->labelFailed);
@@ -41,6 +42,8 @@ void LearnMenu::Init()
     showC=true;
     showE=true;
     ui->radioButtonCE->clicked();
+    ui->comboBoxSource->setCurrentIndex(0);
+    source=AudioSourceEnum::Youdao;
 }
 
 void LearnMenu::on_pushButtonTest_clicked()
@@ -89,7 +92,7 @@ void LearnMenu::on_pushButtonStart_clicked()
     }
 
     ui->labelFailed->hide();
-    emit(ShowLearn(learnFilePath,showC,showE));
+    emit(ShowLearn(learnFilePath,showC,showE,source));
 }
 
 void LearnMenu::on_pushButtonExit_clicked()
@@ -113,4 +116,12 @@ void LearnMenu::on_radioButtonE_toggled(bool checked)
 {
     showC=false;
     showE=true;
+}
+
+void LearnMenu::on_comboBoxSource_activated(int index)
+{
+    if(index==0)
+        source=AudioSourceEnum::Youdao;
+    if(index==1)
+        source=AudioSourceEnum::Machine;
 }

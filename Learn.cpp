@@ -21,12 +21,16 @@ Learn::Learn(QWidget *parent) :
 
     l2->AddUnit(ui->pushButtonExit,width(),height(),LiFixedCorner::RightBottom);
     l2->AddUnit(ui->pushButtonHelp,width(),height(),LiFixedCorner::RightTop);
+    l2->AddUnit(ui->pushButtonSearch,width(),height(),LiFixedCorner::RightTop);
 
     tts=new QTextToSpeech(this);
     tts->setLocale(QLocale::English);
     tts->setRate(0.0);
     tts->setPitch(1.0);
     tts->setVolume(1.0);
+
+    player = new QMediaPlayer(this);
+    player->setVolume(100);
 
     learnHelp=new LearnHelp();
     learnHelp->hide();
@@ -43,12 +47,13 @@ void Learn::resizeEvent(QResizeEvent *event)
     l2->ResizeWithFixedToLayout(width(),height());
 }
 
-void Learn::Init(QStringList learnFilePath,bool showC,bool showE)
+void Learn::Init(QStringList learnFilePath,bool showC,bool showE,AudioSourceEnum::AudioSource source)
 {
     this->learnFilePath=learnFilePath;
+    this->source=source;
 
     ui->pushButtonPrev->setDisabled(true);
-    ui->pushButtonPrev->setEnabled(true);
+    ui->pushButtonNext->setEnabled(true);
 
     wordChineseLearn.clear();
     wordEnglishLearn.clear();
@@ -149,7 +154,16 @@ void Learn::on_pushButtonShowEnglish_clicked()
 
 void Learn::on_pushButtonRead_clicked()
 {
-    tts->say(wordEnglishLearn[nowNum]);
+    if(source==AudioSourceEnum::Youdao)
+    {
+        player->setMedia(QUrl("http://dict.youdao.com/speech?audio="+wordEnglishLearn[nowNum]));
+        player->play();
+    }
+
+    if(source==AudioSourceEnum::Machine)
+    {
+        tts->say(wordEnglishLearn[nowNum]);
+    }
 }
 
 void Learn::OnLocationChange(int offset)
@@ -191,4 +205,9 @@ void Learn::on_pushButtonExit_clicked()
 void Learn::on_pushButtonHelp_clicked()
 {
     learnHelp->exec();
+}
+
+void Learn::on_pushButtonSearch_clicked()
+{
+    ShowSearch(learnFilePath);
 }

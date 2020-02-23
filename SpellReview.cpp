@@ -26,12 +26,16 @@ void SpellReview::Init(int rightNum,int markNum,int tipNum,int wrongNum,int tota
         ui->labelReview->setText("关闭窗口返回首页！");
         ui->pushButtonYes->hide();
         ui->pushButtonNo->hide();
+        ui->pushButtonYes->setDisabled(true);
+        ui->pushButtonNo->setDisabled(true);
     }
     else
     {
         ui->labelReview->setText("是否进入复习模式？");
         ui->pushButtonYes->show();
         ui->pushButtonNo->show();
+        ui->pushButtonYes->setEnabled(true);
+        ui->pushButtonNo->setEnabled(true);
     }
 }
 

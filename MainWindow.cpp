@@ -37,6 +37,9 @@ MainWindow::MainWindow(QWidget *parent) :
     HideAllFrame();
     menu->show();
 
+    search=new Search();
+    search->hide();
+
     //DataInput
     connect(
         menu,SIGNAL(ShowDataInputMenu()),
@@ -56,16 +59,16 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //Choose
     connect(
-        menu,SIGNAL(ShowChooseMenu(ChooseMode::Mode)),
-        this,SLOT(ShowChooseMenu(ChooseMode::Mode)));
+        menu,SIGNAL(ShowChooseMenu(ModeEnum::Mode)),
+        this,SLOT(ShowChooseMenu(ModeEnum::Mode)));
 
     connect(
         chooseMenu,SIGNAL(ShowMenu()),
         this,SLOT(ShowMenu()));
 
     connect(
-        chooseMenu,SIGNAL(ShowChoose(ChooseMode::Mode,ChooseOrder::Order,QStringList,QStringList,QList<int>)),
-        this,SLOT(ShowChoose(ChooseMode::Mode,ChooseOrder::Order,QStringList,QStringList,QList<int>)));
+        chooseMenu,SIGNAL(ShowChoose(ModeEnum::Mode,OrderEnum::Order,QStringList,QStringList,QList<int>)),
+        this,SLOT(ShowChoose(ModeEnum::Mode,OrderEnum::Order,QStringList,QStringList,QList<int>)));
 
     connect(
         choose,SIGNAL(ShowMenu()),
@@ -81,8 +84,8 @@ MainWindow::MainWindow(QWidget *parent) :
         this,SLOT(ShowMenu()));
 
     connect(
-        spellMenu,SIGNAL(ShowSpell(SpellOrder::Order,QStringList,QList<int>)),
-        this,SLOT(ShowSpell(SpellOrder::Order,QStringList,QList<int>)));
+        spellMenu,SIGNAL(ShowSpell(OrderEnum::Order,QStringList,QList<int>,AudioSourceEnum::AudioSource)),
+        this,SLOT(ShowSpell(OrderEnum::Order,QStringList,QList<int>,AudioSourceEnum::AudioSource)));
 
     connect(
         spell,SIGNAL(ShowMenu()),
@@ -98,12 +101,29 @@ MainWindow::MainWindow(QWidget *parent) :
         this,SLOT(ShowMenu()));
 
     connect(
-        learnMenu,SIGNAL(ShowLearn(QStringList,bool,bool)),
-        this,SLOT(ShowLearn(QStringList,bool,bool)));
+        learnMenu,SIGNAL(ShowLearn(QStringList,bool,bool,AudioSourceEnum::AudioSource)),
+        this,SLOT(ShowLearn(QStringList,bool,bool,AudioSourceEnum::AudioSource)));
 
     connect(
         learn,SIGNAL(ShowMenu()),
         this,SLOT(ShowMenu()));
+
+    //Search
+    connect(
+        menu,SIGNAL(ShowSearch(QStringList)),
+        this,SLOT(ShowSearch(QStringList)));
+
+    connect(
+        spell,SIGNAL(ShowSearch(QStringList)),
+        this,SLOT(ShowSearch(QStringList)));
+
+    connect(
+        choose,SIGNAL(ShowSearch(QStringList)),
+        this,SLOT(ShowSearch(QStringList)));
+
+    connect(
+        learn,SIGNAL(ShowSearch(QStringList)),
+        this,SLOT(ShowSearch(QStringList)));
 }
 
 MainWindow::~MainWindow()
@@ -165,14 +185,14 @@ void MainWindow::ShowDataInput(QString path,QString name,int num)
     dataInput->Init(path,name,num);
 }
 
-void MainWindow::ShowChooseMenu(ChooseMode::Mode mode)
+void MainWindow::ShowChooseMenu(ModeEnum::Mode mode)
 {
     HideAllFrame();
     chooseMenu->show();
     chooseMenu->Init(mode);
 }
 
-void MainWindow::ShowChoose(ChooseMode::Mode mode,ChooseOrder::Order order,QStringList testFilePath,QStringList confuseFilePath,QList<int> select)
+void MainWindow::ShowChoose(ModeEnum::Mode mode,OrderEnum::Order order,QStringList testFilePath,QStringList confuseFilePath,QList<int> select)
 {
     HideAllFrame();
     choose->show();
@@ -186,11 +206,11 @@ void MainWindow::ShowSpellMenu()
     spellMenu->Init();
 }
 
-void MainWindow::ShowSpell(SpellOrder::Order order,QStringList testFilePath,QList<int> select)
+void MainWindow::ShowSpell(OrderEnum::Order order,QStringList testFilePath,QList<int> select,AudioSourceEnum::AudioSource source)
 {
     HideAllFrame();
     spell->show();
-    spell->Init(order,testFilePath,select);
+    spell->Init(order,testFilePath,select,source);
 }
 
 void MainWindow::ShowLearnMenu()
@@ -200,9 +220,15 @@ void MainWindow::ShowLearnMenu()
     learnMenu->Init();
 }
 
-void MainWindow::ShowLearn(QStringList learnFilePath,bool showC,bool showE)
+void MainWindow::ShowLearn(QStringList learnFilePath,bool showC,bool showE,AudioSourceEnum::AudioSource source)
 {
     HideAllFrame();
     learn->show();
-    learn->Init(learnFilePath,showC,showE);
+    learn->Init(learnFilePath,showC,showE,source);
+}
+
+void MainWindow::ShowSearch(QStringList offerFilePath)
+{
+    search->Init(offerFilePath);
+    search->show();
 }

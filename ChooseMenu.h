@@ -13,22 +13,12 @@
 #include <LiLibrary/LiFixedToLayout.h>
 #include <LiLibrary/LiFileName.h>
 
+#include "GlobalEnum.h"
+
 namespace Ui
 {
     class ChooseMenu;
 }
-
-class ChooseMode
-{
-public:
-    enum Mode{CE,EC};
-};
-
-class ChooseOrder
-{
-public:
-    enum Order{Ordered,Random};
-};
 
 class ChooseMenu : public QFrame
 {
@@ -38,7 +28,7 @@ public:
     explicit ChooseMenu(QWidget *parent = nullptr);
     ~ChooseMenu();
 
-    void Init(ChooseMode::Mode mode);
+    void Init(ModeEnum::Mode mode);
 
 protected:
     virtual void resizeEvent(QResizeEvent * event);
@@ -49,8 +39,8 @@ private:
     LiEasyLayout* l1;
     LiFixedToLayout* l2;
 
-    ChooseMode::Mode mode;
-    ChooseOrder::Order order;
+    ModeEnum::Mode mode;
+    OrderEnum::Order order;
 
     QStringList testFilePath;
     QStringList confuseFilePath;
@@ -72,7 +62,7 @@ private slots:
 
 signals:
     void ShowMenu();
-    void ShowChoose(ChooseMode::Mode mode,ChooseOrder::Order order,QStringList testFilePath,QStringList confuseFilePath,QList<int> select);
+    void ShowChoose(ModeEnum::Mode mode,OrderEnum::Order order,QStringList testFilePath,QStringList confuseFilePath,QList<int> select);
 };
 
 #endif // CHOOSEMENU_H

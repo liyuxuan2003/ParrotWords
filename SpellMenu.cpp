@@ -12,6 +12,7 @@ SpellMenu::SpellMenu(QWidget *parent) :
 
     l1->AddUnit(ui->labelTitle);
     l1->AddUnit(new QWidget*[3]{ui->labelTest,ui->pushButtonTest,ui->labelTestInfo},3);
+    l1->AddUnit(new QWidget*[2]{ui->labelSource,ui->comboBoxSource},2);
     l1->AddUnit(new QWidget*[5]{ui->labelOrder,ui->radioButtonOrdered,ui->radioButtonRandom,ui->radioButtonSelect,ui->spinBoxSelect},5);
     l1->AddUnit(ui->pushButtonStart);
     l1->AddUnit(ui->labelFailed);
@@ -40,6 +41,8 @@ void SpellMenu::Init()
     ui->spinBoxSelect->hide();
     ui->spinBoxSelect->setValue(10);
     ui->radioButtonOrdered->setChecked(true);
+    ui->comboBoxSource->setCurrentIndex(0);
+    source=AudioSourceEnum::Youdao;
 }
 
 void SpellMenu::on_pushButtonExit_clicked()
@@ -123,28 +126,36 @@ void SpellMenu::on_pushButtonStart_clicked()
     }
 
     ui->labelFailed->hide();
-    emit(ShowSpell(order,testFilePath,select));
+    emit(ShowSpell(order,testFilePath,select,source));
 }
 
 void SpellMenu::on_radioButtonOrdered_toggled(bool checked)
 {
     if(checked==true)
-        order=SpellOrder::Ordered;
+        order=OrderEnum::Ordered;
 }
 
 void SpellMenu::on_radioButtonRandom_toggled(bool checked)
 {
     if(checked==true)
-        order=SpellOrder::Random;
+        order=OrderEnum::Random;
 }
 
 void SpellMenu::on_radioButtonSelect_toggled(bool checked)
 {
     if(checked==true)
     {
-        order=SpellOrder::Random;
+        order=OrderEnum::Random;
         ui->spinBoxSelect->show();
     }
     if(checked==false)
         ui->spinBoxSelect->hide();
+}
+
+void SpellMenu::on_comboBoxSource_activated(int index)
+{
+    if(index==0)
+        source=AudioSourceEnum::Youdao;
+    if(index==1)
+        source=AudioSourceEnum::Machine;
 }

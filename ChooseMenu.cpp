@@ -33,12 +33,12 @@ void ChooseMenu::resizeEvent(QResizeEvent *event)
     l2->ResizeWithFixedToLayout(width(),height());
 }
 
-void ChooseMenu::Init(ChooseMode::Mode mode)
+void ChooseMenu::Init(ModeEnum::Mode mode)
 {
     this->mode=mode;
-    if(mode==ChooseMode::CE)
+    if(mode==ModeEnum::CE)
         ui->labelTitle->setText("中译英选择练习-配置页面");
-    if(mode==ChooseMode::EC)
+    if(mode==ModeEnum::EC)
         ui->labelTitle->setText("英译中选择练习-配置页面");
     ui->labelTestInfo->setText("未选择测试单词库");
     ui->labelConfuseInfo->setText("未选择混淆单词库");
@@ -177,20 +177,20 @@ void ChooseMenu::on_pushButtonStart_clicked()
 void ChooseMenu::on_radioButtonOrdered_toggled(bool checked)
 {
     if(checked==true)
-        order=ChooseOrder::Ordered;
+        order=OrderEnum::Ordered;
 }
 
 void ChooseMenu::on_radioButtonRandom_toggled(bool checked)
 {
     if(checked==true)
-        order=ChooseOrder::Random;
+        order=OrderEnum::Random;
 }
 
 void ChooseMenu::on_radioButtonSelect_toggled(bool checked)
 {
     if(checked==true)
     {
-        order=ChooseOrder::Random;
+        order=OrderEnum::Random;
         ui->spinBoxSelect->show();
     }
     if(checked==false)

@@ -15,9 +15,12 @@
 #include <LiLibrary/LiEasyLayout.h>
 #include <LiLibrary/LiFixedToLayout.h>
 
-#include "ChooseMenu.h"
 #include "ChooseReview.h"
 #include "ChooseHelp.h"
+
+#include "WordCard.h"
+
+#include "GlobalEnum.h"
 
 namespace Ui
 {
@@ -32,7 +35,7 @@ public:
     explicit Choose(QWidget *parent = nullptr);
     ~Choose();
 
-    void Init(ChooseMode::Mode mode,ChooseOrder::Order order,QStringList testFilePath,QStringList confuseFilePath,QList<int> review);
+    void Init(ModeEnum::Mode mode,OrderEnum::Order order,QStringList testFilePath,QStringList confuseFilePath,QList<int> review);
 
 protected:
     virtual void resizeEvent(QResizeEvent * event);
@@ -48,6 +51,16 @@ private slots:
 
     void on_pushButtonHelp_clicked();
 
+    void on_pushButtonSearch_clicked();
+
+    void on_pushButtonA_clicked();
+
+    void on_pushButtonB_clicked();
+
+    void on_pushButtonC_clicked();
+
+    void on_pushButtonD_clicked();
+
 private:
     Ui::Choose *ui;
 
@@ -58,8 +71,8 @@ private:
     LiEasyLayout* l1;
     LiFixedToLayout* l2;
 
-    ChooseMode::Mode mode;
-    ChooseOrder::Order order;
+    ModeEnum::Mode mode;
+    OrderEnum::Order order;
 
     QStringList testFilePath;
     QStringList confuseFilePath;
@@ -74,6 +87,9 @@ private:
 
     QList<int> toReview;
 
+    QStringList wordCardChinese;
+    QStringList wordCardEnglish;
+
     int* record;
     int* testOrder;
 
@@ -86,6 +102,8 @@ private:
 
 signals:
     void ShowMenu();
+
+    void ShowSearch(QStringList offerFilePath);
 
 };
 

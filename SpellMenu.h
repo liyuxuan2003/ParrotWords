@@ -13,11 +13,7 @@
 #include <LiLibrary/LiFixedToLayout.h>
 #include <LiLibrary/LiFileName.h>
 
-class SpellOrder
-{
-public:
-    enum Order{Ordered,Random};
-};
+#include "GlobalEnum.h"
 
 namespace Ui
 {
@@ -43,7 +39,8 @@ private:
     LiEasyLayout* l1;
     LiFixedToLayout* l2;
 
-    SpellOrder::Order order;
+    OrderEnum::Order order;
+    AudioSourceEnum::AudioSource source;
 
     QStringList testFilePath;
 
@@ -58,12 +55,13 @@ private slots:
 
     void on_radioButtonRandom_toggled(bool checked);
 
-
     void on_radioButtonSelect_toggled(bool checked);
+
+    void on_comboBoxSource_activated(int index);
 
 signals:
     void ShowMenu();
-    void ShowSpell(SpellOrder::Order order,QStringList testFilePath,QList<int> select);
+    void ShowSpell(OrderEnum::Order order,QStringList testFilePath,QList<int> select,AudioSourceEnum::AudioSource source);
 };
 
 #endif // SPELLMENU_H

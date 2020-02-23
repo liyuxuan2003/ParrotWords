@@ -42,7 +42,7 @@ void DataInput::Init(QString path,QString name,int num)
 
     nowNum=0;
     ui->pushButtonPrev->setDisabled(true);
-    ui->pushButtonPrev->setEnabled(true);
+    ui->pushButtonNext->setEnabled(true);
     ui->labelLocation->setText("单词位置："+QString::number(nowNum+1)+"/"+QString::number(num));
     ui->labelSaveInfo->hide();
 
