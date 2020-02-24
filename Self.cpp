@@ -55,13 +55,13 @@ void Self::keyPressEvent(QKeyEvent *ev)
 {
     this->setFocus();
 
-    if(ev->key()==Qt::Key_1)
+    if(ev->key()==Qt::Key_Space)
         ui->pushButtonShowAns->click();
-    else if(ev->key()==Qt::Key_2 && ui->pushButtonRight->isVisible()==true)
+    else if(ev->key()==Qt::Key_1 && ui->pushButtonRight->isVisible()==true)
         ui->pushButtonRight->click();
-    else if(ev->key()==Qt::Key_3 && ui->pushButtonWrong->isVisible()==true)
+    else if(ev->key()==Qt::Key_2 && ui->pushButtonWrong->isVisible()==true)
         ui->pushButtonWrong->click();
-    else if(ev->key()==Qt::Key_4 && ui->pushButtonRead->isVisible()==true)
+    else if(ev->key()==Qt::Key_3 && ui->pushButtonRead->isVisible()==true)
         ui->pushButtonRead->click();
 }
 
@@ -233,13 +233,13 @@ void Self::on_pushButtonRead_clicked()
 {
     if(source==AudioSourceEnum::Youdao)
     {
-        player->setMedia(QUrl("http://dict.youdao.com/speech?audio="+wordEnglish[nowNum]));
+        player->setMedia(QUrl("http://dict.youdao.com/speech?audio="+wordEnglish[testOrder[nowNum]]));
         player->play();
     }
 
     if(source==AudioSourceEnum::Machine)
     {
-        tts->say(wordEnglish[nowNum]);
+        tts->say(wordEnglish[testOrder[nowNum]]);
     }
 }
 

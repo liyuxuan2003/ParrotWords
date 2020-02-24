@@ -273,13 +273,13 @@ void Spell::on_pushButtonTipR_clicked()
 {
     if(source==AudioSourceEnum::Youdao)
     {
-        player->setMedia(QUrl("http://dict.youdao.com/speech?audio="+wordEnglish[nowNum]));
+        player->setMedia(QUrl("http://dict.youdao.com/speech?audio="+wordEnglish[testOrder[nowNum]]));
         player->play();
     }
 
     if(source==AudioSourceEnum::Machine)
     {
-        tts->say(wordEnglish[nowNum]);
+        tts->say(wordEnglish[testOrder[nowNum]]);
     }
 
     if(nowEnterWord!=wordEnglish[testOrder[nowNum]])

@@ -33,6 +33,8 @@ void Search::Init(QStringList offerFilePath)
     this->offerFilePath=offerFilePath;
     if(offerFilePath.length()==0)
         ui->pushButtonApply->setDisabled(true);
+    else
+        ui->pushButtonApply->setEnabled(true);
     ui->lineEditSearch->setFocus();
 }
 
