@@ -15,8 +15,8 @@ Self::Self(QWidget *parent) :
 
     l1->AddUnit(new QWidget*[3]{ui->labelQTitle,ui->labelQC,ui->labelQE},3);
     l1->AddUnit(new QWidget*[3]{ui->labelATitle,ui->labelAC,ui->labelAE},3);
-    l1->AddUnit(new QWidget*[4]{ui->pushButtonShowAns,ui->pushButtonRight,ui->pushButtonWrong,ui->pushButtonRead},4);
-    l1->AddUnit(new QWidget*[2]{ui->labelNote,ui->lineEditNote},2);
+    l1->AddUnit(new QWidget*[3]{ui->labelNote,ui->lineEditNote,ui->pushButtonShowAns},3);
+    l1->AddUnit(new QWidget*[3]{ui->pushButtonRight,ui->pushButtonWrong,ui->pushButtonRead},3);
 
     l1->LayoutConfigDone();
 
@@ -56,7 +56,12 @@ void Self::keyPressEvent(QKeyEvent *ev)
     this->setFocus();
 
     if(ev->key()==Qt::Key_Space)
-        ui->pushButtonShowAns->click();
+    {
+        if(ui->pushButtonRight->isVisible()==false)
+            ui->pushButtonShowAns->click();
+        else if(ui->pushButtonRight->isVisible()==true)
+            ui->pushButtonRight->click();
+    }
     else if(ev->key()==Qt::Key_1 && ui->pushButtonRight->isVisible()==true)
         ui->pushButtonRight->click();
     else if(ev->key()==Qt::Key_2 && ui->pushButtonWrong->isVisible()==true)

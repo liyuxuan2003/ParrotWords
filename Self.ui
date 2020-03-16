@@ -22,10 +22,10 @@
   <widget class="QPushButton" name="pushButtonShowAns">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>390</y>
+     <x>690</x>
+     <y>396</y>
      <width>131</width>
-     <height>51</height>
+     <height>50</height>
     </rect>
    </property>
    <property name="font">
@@ -213,8 +213,8 @@ color: rgb(255, 255, 255);</string>
   <widget class="QPushButton" name="pushButtonRight">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>390</y>
+     <x>50</x>
+     <y>520</y>
      <width>161</width>
      <height>51</height>
     </rect>
@@ -316,8 +316,8 @@ color: rgb(255, 255, 255);</string>
   <widget class="QPushButton" name="pushButtonWrong">
    <property name="geometry">
     <rect>
-     <x>400</x>
-     <y>390</y>
+     <x>240</x>
+     <y>520</y>
      <width>161</width>
      <height>51</height>
     </rect>
@@ -342,8 +342,8 @@ color: rgb(255, 255, 255);</string>
   <widget class="QPushButton" name="pushButtonRead">
    <property name="geometry">
     <rect>
-     <x>590</x>
-     <y>390</y>
+     <x>430</x>
+     <y>520</y>
      <width>161</width>
      <height>51</height>
     </rect>
@@ -369,7 +369,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>529</y>
+     <y>400</y>
      <width>131</width>
      <height>41</height>
     </rect>
@@ -397,7 +397,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>530</y>
+     <y>401</y>
      <width>481</width>
      <height>41</height>
     </rect>
@@ -418,7 +418,7 @@ color: rgb(255, 255, 255);</string>
     <string/>
    </property>
    <property name="placeholderText">
-    <string> 你可以在这里输入你心中的答案 便于答案的校对</string>
+    <string> 你可以在这里输入你的答案 便于校对 当然这不是必须的</string>
    </property>
   </widget>
   <widget class="QLabel" name="labelQC">

@@ -57,7 +57,7 @@
     <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>中译英翻译练习-配置页面</string>
+    <string>中译英拼写练习-配置页面</string>
    </property>
   </widget>
   <widget class="QLabel" name="labelFailed">

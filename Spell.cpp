@@ -132,7 +132,12 @@ void Spell::GeneratePage()
 
     QString dotString="";
     for(int i=0;i<wordEnglish[testOrder[nowNum]].length();i++)
-        dotString.append(".");
+    {
+        if(wordEnglish[testOrder[nowNum]][i]==" ")
+            dotString.append(" ");
+        if(wordEnglish[testOrder[nowNum]][i]!=" ")
+            dotString.append(".");
+    }
     ui->labelTipsContent->setText(dotString);
     ui->labelInput->setText("<font color=\"#FFFFFF\">"+dotString+"</font>");
 
@@ -150,7 +155,10 @@ void Spell::keyPressEvent(QKeyEvent *ev)
 
     bool isNeedRewrite=false;
 
-    if(ev->key()==Qt::Key_Space && nowEnterWord==wordEnglish[testOrder[nowNum]])
+    QString spaceRemoveAns=wordEnglish[testOrder[nowNum]];
+    spaceRemoveAns.remove(QRegExp("\\s"));
+
+    if(ev->key()==Qt::Key_Space && nowEnterWord==spaceRemoveAns)
         ui->pushButtonNext->click();
     else if(ev->key()==Qt::Key_1)
         ui->pushButtonTip1->click();
@@ -162,7 +170,7 @@ void Spell::keyPressEvent(QKeyEvent *ev)
         ui->pushButtonTipA->click();
     else if(ev->key()==Qt::Key_5)
         ui->pushButtonTipHide->click();
-    else if(ev->key()==Qt::Key_0 && nowEnterWord==wordEnglish[testOrder[nowNum]])
+    else if(ev->key()==Qt::Key_0 && nowEnterWord==spaceRemoveAns)
         ui->pushButtonMark->click();
     else if(ev->key()==Qt::Key_Backspace)
     {
@@ -180,27 +188,37 @@ void Spell::keyPressEvent(QKeyEvent *ev)
     if(isNeedRewrite==true)
     {
         ui->labelInput->clear();
+        int offset=0;
         for(int i=0;i<wordEnglish[testOrder[nowNum]].length();i++)
         {
-            if(i<nowEnterWord.length())
+            if(i-offset<nowEnterWord.length())
             {
-                if(wordEnglish[testOrder[nowNum]][i]==nowEnterWord[i])
-                    ui->labelInput->setText(ui->labelInput->text()+"<font color=\"#FFFFFF\">"+nowEnterWord[i]+"</font>");
-                if(wordEnglish[testOrder[nowNum]][i]!=nowEnterWord[i])
-                    ui->labelInput->setText(ui->labelInput->text()+"<font color=\"#FF0000\">"+nowEnterWord[i]+"</font>");
+                if(wordEnglish[testOrder[nowNum]][i]==" ")
+                {
+                    offset++;
+                    ui->labelInput->setText(ui->labelInput->text()+"<font color=\"#FFFFFF\"> </font>");
+                }
+                else if(wordEnglish[testOrder[nowNum]][i]==nowEnterWord[i-offset])
+                    ui->labelInput->setText(ui->labelInput->text()+"<font color=\"#FFFFFF\">"+nowEnterWord[i-offset]+"</font>");
+                else if(wordEnglish[testOrder[nowNum]][i]!=nowEnterWord[i-offset])
+                    ui->labelInput->setText(ui->labelInput->text()+"<font color=\"#FF0000\">"+nowEnterWord[i-offset]+"</font>");
             }
             else
-                ui->labelInput->setText(ui->labelInput->text()+"<font color=\"#FFFFFF\">.</font>");
+            {
+                if(wordEnglish[testOrder[nowNum]][i]==" ")
+                    ui->labelInput->setText(ui->labelInput->text()+"<font color=\"#FFFFFF\"> </font>");
+                if(wordEnglish[testOrder[nowNum]][i]!=" ")
+                    ui->labelInput->setText(ui->labelInput->text()+"<font color=\"#FFFFFF\">.</font>");
+            }
         }
-        if(nowEnterWord==wordEnglish[testOrder[nowNum]])
+        if(nowEnterWord==spaceRemoveAns)
         {
             ui->pushButtonNext->show();
             ui->pushButtonMark->show();
             if(isMarkClick==true)
                 ui->labelMark->show();
         }
-
-        if(nowEnterWord!=wordEnglish[testOrder[nowNum]])
+        if(nowEnterWord!=spaceRemoveAns)
         {
             ui->pushButtonNext->hide();
             ui->pushButtonMark->hide();
@@ -250,8 +268,13 @@ void Spell::on_pushButtonTip1_clicked()
     if(wordChinese[testOrder[nowNum]].length()>=1)
     {
         ui->labelTipsContent->setText(QString(wordEnglish[testOrder[nowNum]][0]));
-        for(int i=0;i<wordEnglish[testOrder[nowNum]].length()-1;i++)
-            ui->labelTipsContent->setText(ui->labelTipsContent->text()+".");
+        for(int i=1;i<wordEnglish[testOrder[nowNum]].length();i++)
+        {
+            if(wordEnglish[testOrder[nowNum]][i]==" ")
+                ui->labelTipsContent->setText(ui->labelTipsContent->text()+" ");
+            if(wordEnglish[testOrder[nowNum]][i]!=" ")
+                ui->labelTipsContent->setText(ui->labelTipsContent->text()+".");
+        }
         if(nowEnterWord!=wordEnglish[testOrder[nowNum]])
             record[nowNum]=std::max(record[nowNum],2);
     }
@@ -262,8 +285,13 @@ void Spell::on_pushButtonTip2_clicked()
     if(wordChinese[testOrder[nowNum]].length()>=2)
     {
         ui->labelTipsContent->setText(QString(wordEnglish[testOrder[nowNum]][0])+QString(wordEnglish[testOrder[nowNum]][1]));
-        for(int i=0;i<wordEnglish[testOrder[nowNum]].length()-2;i++)
-            ui->labelTipsContent->setText(ui->labelTipsContent->text()+".");
+        for(int i=2;i<wordEnglish[testOrder[nowNum]].length();i++)
+        {
+            if(wordEnglish[testOrder[nowNum]][i]==" ")
+                ui->labelTipsContent->setText(ui->labelTipsContent->text()+" ");
+            if(wordEnglish[testOrder[nowNum]][i]!=" ")
+                ui->labelTipsContent->setText(ui->labelTipsContent->text()+".");
+        }
         if(nowEnterWord!=wordEnglish[testOrder[nowNum]])
             record[nowNum]=std::max(record[nowNum],2);
     }
