@@ -32,6 +32,8 @@ private slots:
 
     void on_pushButtonExit_clicked();
 
+    void on_pushButtonText_clicked();
+
 private:
     Ui::DataInputMenu* ui;
 
@@ -44,6 +46,8 @@ private:
 
 signals:
     void ShowDataInput(QString path,QString name,int num);
+
+    void ShowDataInputText(QString path,QString name);
 
     void ShowMenu();
 

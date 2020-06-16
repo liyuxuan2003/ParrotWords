@@ -16,6 +16,9 @@ MainWindow::MainWindow(QWidget *parent) :
     dataInput=new DataInput(this);
     dataInput->move(0,0);
 
+    dataInputText=new DataInputText(this);
+    dataInputText->move(0,0);
+
     chooseMenu=new ChooseMenu(this);
     chooseMenu->move(0,0);
 
@@ -56,11 +59,19 @@ MainWindow::MainWindow(QWidget *parent) :
         this,SLOT(ShowDataInput(QString,QString,int)));
 
     connect(
+        dataInputMenu,SIGNAL(ShowDataInputText(QString,QString)),
+        this,SLOT(ShowDataInputText(QString,QString)));
+
+    connect(
         dataInputMenu,SIGNAL(ShowMenu()),
         this,SLOT(ShowMenu()));
 
     connect(
         dataInput,SIGNAL(ShowMenu()),
+        this,SLOT(ShowMenu()));
+
+    connect(
+        dataInputText,SIGNAL(ShowMenu()),
         this,SLOT(ShowMenu()));
 
     //Choose
@@ -164,6 +175,7 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 
     dataInputMenu->resize(width(),height());
     dataInput->resize(width(),height());
+    dataInputText->resize(width(),height());
 
     chooseMenu->resize(width(),height());
     choose->resize(width(),height());
@@ -184,6 +196,7 @@ void MainWindow::HideAllFrame()
 
     dataInputMenu->hide();
     dataInput->hide();
+    dataInputText->hide();
 
     chooseMenu->hide();
     choose->hide();
@@ -216,6 +229,13 @@ void MainWindow::ShowDataInput(QString path,QString name,int num)
     HideAllFrame();
     dataInput->show();
     dataInput->Init(path,name,num);
+}
+
+void MainWindow::ShowDataInputText(QString path,QString name)
+{
+    HideAllFrame();
+    dataInputText->show();
+    dataInputText->Init(path,name);
 }
 
 void MainWindow::ShowChooseMenu(ModeEnum::Mode mode)

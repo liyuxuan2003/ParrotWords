@@ -7,6 +7,7 @@
 
 #include "DataInputMenu.h"
 #include "DataInput.h"
+#include "DataInputText.h"
 
 #include "ChooseMenu.h"
 #include "Choose.h"
@@ -40,6 +41,7 @@ public slots:
 
     void ShowDataInputMenu();
     void ShowDataInput(QString path,QString name,int num);
+    void ShowDataInputText(QString path,QString name);
 
     void ShowChooseMenu(ModeEnum::Mode mode);
     void ShowChoose(ModeEnum::Mode mode,OrderEnum::Order order,QStringList testFilePath,QStringList confuseFilePath,QList<int> select);
@@ -65,6 +67,7 @@ private:
 
     DataInputMenu* dataInputMenu;
     DataInput* dataInput;
+    DataInputText* dataInputText;
 
     ChooseMenu* chooseMenu;
     Choose* choose;

@@ -14,7 +14,7 @@ DataInputMenu::DataInputMenu(QWidget *parent) :
     l1->AddUnit(new QWidget*[2]{ui->labelName,ui->lineEditName},2);
     l1->AddUnit(new QWidget*[3]{ui->labelPath,ui->pushButtonPath,ui->labelPathSet},3);
     l1->AddUnit(new QWidget*[2]{ui->labelNum,ui->spinBoxNum},2);
-    l1->AddUnit(ui->pushButtonCreate);
+    l1->AddUnit(new QWidget*[2]{ui->pushButtonCreate,ui->pushButtonText},2);
     l1->AddUnit(ui->labelFailed);
 
     l1->LayoutConfigDone();
@@ -67,8 +67,26 @@ void DataInputMenu::on_pushButtonCreate_clicked()
         ui->labelFailed->show();
 }
 
+void DataInputMenu::on_pushButtonText_clicked()
+{
+    name=ui->lineEditName->text();
+    num=ui->spinBoxNum->value();
+    if(!QFile::exists(path+name+".json"))
+    {
+        QFile file(path+name+".json");
+        file.open(QIODevice::WriteOnly);
+        file.close();
+        ui->labelFailed->hide();
+        emit(ShowDataInputText(path,name));
+    }
+    else
+        ui->labelFailed->show();
+}
+
+
 
 void DataInputMenu::on_pushButtonExit_clicked()
 {
     emit(ShowMenu());
 }
+

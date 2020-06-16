@@ -177,12 +177,20 @@ void Spell::keyPressEvent(QKeyEvent *ev)
         nowEnterWord.chop(1);
         isNeedRewrite=true;
     }
-    else if(ev->key()>=Qt::Key_A && ev->key()<=Qt::Key_Z && nowEnterWord.length()<wordEnglish[testOrder[nowNum]].length())
+    else if((ev->key()>=Qt::Key_A && ev->key()<=Qt::Key_Z) || ev->key()==Qt::Key_Minus || ev->key()==Qt::Key_Apostrophe)
     {
-        char keyInput='a';
-        keyInput=keyInput+(ev->key()-Qt::Key_A);
-        nowEnterWord.append(keyInput);
-        isNeedRewrite=true;
+        if(nowEnterWord.length()<wordEnglish[testOrder[nowNum]].length())
+        {
+            char keyInput=' ';
+            if(ev->key()>=Qt::Key_A && ev->key()<=Qt::Key_Z)
+                keyInput='a'+(ev->key()-Qt::Key_A);
+            if(ev->key()==Qt::Key_Minus)
+                keyInput='-';
+            if(ev->key()==Qt::Key_Apostrophe)
+                keyInput='\'';
+            nowEnterWord.append(keyInput);
+            isNeedRewrite=true;
+        }
     }
 
     if(isNeedRewrite==true)

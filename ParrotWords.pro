@@ -54,7 +54,8 @@ SOURCES += \
     SelfMenu.cpp \
     Self.cpp \
     SelfReview.cpp \
-    SelfHelp.cpp
+    SelfHelp.cpp \
+    DataInputText.cpp
 
 RC_FILE += Version.rc
 
@@ -86,7 +87,8 @@ HEADERS += \
     SelfMenu.h \
     Self.h \
     SelfReview.h \
-    SelfHelp.h
+    SelfHelp.h \
+    DataInputText.h
 
 FORMS += \
         MainWindow.ui \
@@ -110,7 +112,8 @@ FORMS += \
     SelfMenu.ui \
     Self.ui \
     SelfReview.ui \
-    SelfHelp.ui
+    SelfHelp.ui \
+    DataInputText.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

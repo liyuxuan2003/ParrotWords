@@ -198,7 +198,7 @@ color: rgb(255, 255, 255);</string>
     <rect>
      <x>50</x>
      <y>510</y>
-     <width>161</width>
+     <width>221</width>
      <height>51</height>
     </rect>
    </property>
@@ -213,7 +213,7 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>创建单词库！</string>
+    <string>使用常规模式创建单词库</string>
    </property>
   </widget>
   <widget class="QLabel" name="labelFailed">
@@ -259,6 +259,29 @@ color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>返回首页</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonText">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>510</y>
+     <width>221</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>等线</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(100, 100, 100);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>使用文本模式创建单词库</string>
    </property>
   </widget>
  </widget>

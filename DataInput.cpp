@@ -103,12 +103,21 @@ void DataInput::on_pushButtonSave_clicked()
     wordChinese[nowNum]=ui->lineEditChinese->text();
     wordEnglish[nowNum]=ui->lineEditEnglish->text();
 
+    int emptyCount=0;
+    for(int i=num-1;i>=0;i--)
+    {
+        if(wordChinese[i]=="" && wordEnglish[i]=="")
+            emptyCount++;
+        else
+            break;
+    }
+
     QFile file(path+name+".json");
     file.open(QIODevice::ReadWrite);
     file.resize(0);
 
     QJsonArray jsonArray;
-    for(int i=0;i<num;i++)
+    for(int i=0;i<num-emptyCount;i++)
     {
         QJsonObject jsonObject;
         jsonObject.insert("wordChinese",wordChinese[i]);
